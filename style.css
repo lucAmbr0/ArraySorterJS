@@ -6,98 +6,130 @@
 /* ---------------  COLOR PALETTE VARIABLES  --------------- */
 
 :root {
-    --palette-50: rgba(242, 246, 252, 1);
-    --palette-100: rgba(226, 236, 247, 1);
-    --palette-200: rgba(203, 222, 242, 1);
-    --palette-300: rgb(168, 201, 232);
-    --palette-400: rgba(126, 172, 220, 1);
-    --palette-500: rgba(95, 144, 210, 1);
-    --palette-600: rgba(74, 117, 196, 1);
-    --palette-700: rgba(65, 100, 180, 1);
-    --palette-800: rgba(58, 83, 147, 1);
-    --palette-900: rgba(51, 71, 117, 1);
-    --palette-950: rgba(35, 44, 72, 1);
+    --palette-50: 242, 246, 252;
+    --palette-100: 226, 236, 247;
+    --palette-200: 203, 222, 242;
+    --palette-300: 168, 201, 232;
+    --palette-400: 126, 172, 220;
+    --palette-500: 95, 144, 210;
+    --palette-600: 74, 117, 196;
+    --palette-700: 65, 100, 180;
+    --palette-800: 58, 83, 147;
+    --palette-900: 51, 71, 117;
+    --palette-950: 35, 44, 72;
+
+    --solidCol: 15, 15, 15;
+
+    --boxShadow0: 0 0 10px rgba(0, 0, 0, 1);
+    --boxShadow1: 0 0 20px rgba(0, 0, 0, 0.3);
+    --boxShadow2: 0 0 5px rgba(0, 0, 0, 0.3);
+    --boxShadow3: 0 0 8px rgba(0, 0, 0, 0.2);
+    --boxShadow4: 0 0 6px rgba(0, 0, 0, 0.3);
+
+    --socialIconCol: invert();
+    --boxBorderColor: transparent;
+
+    --HeadingFont: "Rubik";
+    --SecondaryHeadingFont: "Poppins";
+    --StandardTextFont: "Noto Sans";
+}
+
+.darkModeVariables {
+    --solidCol: 240, 240, 240;
+    --boxShadow0: 0 0 0 rgba(0, 0, 0, 0);
+    --boxShadow1: 0 0 0 rgba(0, 0, 0, 0);
+    --boxShadow2: 0 0 0 rgba(0, 0, 0, 0);
+    --boxShadow3: 0 0 0 rgba(0, 0, 0, 0);
+    --boxShadow4: 0 0 0 rgba(0, 0, 0, 0);
+    --socialIconCol: dark;
+    --boxBorderColor: var(--palette-600);
 }
 
 .LIGHTsan-marino-theme {
-    --palette-50: rgba(242, 246, 252, 1);
-    --palette-100: rgba(226, 236, 247, 1);
-    --palette-200: rgba(203, 222, 242, 1);
-    --palette-300: rgba(168, 201, 232, 1);
-    --palette-400: rgba(126, 172, 220, 1);
-    --palette-500: rgba(95, 144, 210, 1);
-    --palette-600: rgba(74, 117, 196, 1);
-    --palette-700: rgba(65, 100, 180, 1);
-    --palette-800: rgba(58, 83, 147, 1);
-    --palette-900: rgba(51, 71, 117, 1);
-    --palette-950: rgba(35, 44, 72, 1);
-  }
+    --palette-50: 242, 246, 252;
+    --palette-100: 226, 236, 247;
+    --palette-200: 203, 222, 242;
+    --palette-300: 168, 201, 232;
+    --palette-400: 126, 172, 220;
+    --palette-500: 95, 144, 210;
+    --palette-600: 74, 117, 196;
+    --palette-700: 65, 100, 180;
+    --palette-800: 58, 83, 147;
+    --palette-900: 51, 71, 117;
+    --palette-950: 35, 44, 72;
+}
+
 .DARKsan-marino-theme {
-    --palette-950: rgba(35, 44, 72, 1);
-    --palette-900: rgba(51, 71, 117, 1);
-    --palette-800: rgba(58, 83, 147, 1);
-    --palette-700: rgba(65, 100, 180, 1);
-    --palette-600: rgba(74, 117, 196, 1);
-    --palette-500: rgba(95, 144, 210, 1);
-    --palette-400: rgba(126, 172, 220, 1);
-    --palette-300: rgba(168, 201, 232, 1);
-    --palette-200: rgba(203, 222, 242, 1);
-    --palette-100: rgba(226, 236, 247, 1);
-    --palette-50: rgba(242, 246, 252, 1);
-  }
+    --palette-950: 35, 44, 72;
+    --palette-900: 51, 71, 117;
+    --palette-800: 58, 83, 147;
+    --palette-700: 65, 100, 180;
+    --palette-600: 74, 117, 196;
+    --palette-500: 95, 144, 210;
+    --palette-400: 126, 172, 220;
+    --palette-300: 168, 201, 232;
+    --palette-200: 203, 222, 242;
+    --palette-100: 226, 236, 247;
+    --palette-50: 242, 246, 252;
+    --boxBorderColor: rgb(51, 71, 117);
+}
 
 .LIGHTred-damask-theme {
-    --palette-50: rgba(252, 245, 240, 1);
-    --palette-100: rgba(248, 232, 220, 1);
-    --palette-200: rgba(239, 207, 185, 1);
-    --palette-300: rgba(229, 174, 140, 1);
-    --palette-400: rgba(218, 133, 93, 1);
-    --palette-500: rgba(209, 103, 61, 1);
-    --palette-600: rgba(195, 82, 51, 1);
-    --palette-700: rgba(162, 63, 44, 1);
-    --palette-800: rgba(130, 53, 42, 1);
-    --palette-900: rgba(105, 45, 37, 1);
-    --palette-950: rgba(56, 21, 18, 1);
+    --palette-50: 252, 245, 240;
+    --palette-100: 248, 232, 220;
+    --palette-200: 239, 207, 185;
+    --palette-300: 229, 174, 140;
+    --palette-400: 218, 133, 93;
+    --palette-500: 209, 103, 61;
+    --palette-600: 195, 82, 51;
+    --palette-700: 162, 63, 44;
+    --palette-800: 130, 53, 42;
+    --palette-900: 105, 45, 37;
+    --palette-950: 56, 21, 18;
 }
+
 .DARKred-damask-theme {
-    --palette-950: rgba(56, 21, 18, 1);
-    --palette-900: rgba(105, 45, 37, 1);
-    --palette-800: rgba(130, 53, 42, 1);
-    --palette-700: rgba(162, 63, 44, 1);
-    --palette-600: rgba(195, 82, 51, 1);
-    --palette-500: rgba(209, 103, 61, 1);
-    --palette-400: rgba(218, 133, 93, 1);
-    --palette-300: rgba(229, 174, 140, 1);
-    --palette-200: rgba(239, 207, 185, 1);
-    --palette-100: rgba(248, 232, 220, 1);
-    --palette-50: rgba(252, 245, 240, 1);
+    --palette-950: 56, 21, 18;
+    --palette-900: 105, 45, 37;
+    --palette-800: 130, 53, 42;
+    --palette-700: 162, 63, 44;
+    --palette-600: 195, 82, 51;
+    --palette-500: 209, 103, 61;
+    --palette-400: 218, 133, 93;
+    --palette-300: 229, 174, 140;
+    --palette-200: 239, 207, 185;
+    --palette-100: 248, 232, 220;
+    --palette-50: 252, 245, 240;
+    --boxBorderColor: rgb(105, 45, 37);
 }
 
 .LIGHTshamrock-theme {
-    --shamrock-50: rgba(236, 253, 246, 1);
-    --shamrock-100: rgba(210, 249, 230, 1);
-    --shamrock-200: rgba(169, 241, 210, 1);
-    --shamrock-300: rgba(113, 228, 186, 1);
-    --shamrock-400: rgba(61, 209, 160, 1);
-    --shamrock-500: rgba(20, 181, 133, 1);
-    --shamrock-600: rgba(8, 147, 109, 1);
-    --shamrock-700: rgba(6, 118, 90, 1);
-    --shamrock-800: rgba(8, 93, 72, 1);
-    --shamrock-900: rgba(8, 76, 60, 1);
-    --shamrock-950: rgba(3, 43, 35, 1);
+    --palette-50: 236, 253, 246;
+    --palette-100: 210, 249, 230;
+    --palette-200: 169, 241, 210;
+    --palette-300: 113, 228, 186;
+    --palette-400: 61, 209, 160;
+    --palette-500: 20, 181, 133;
+    --palette-600: 8, 147, 109;
+    --palette-700: 6, 118, 90;
+    --palette-800: 8, 93, 72;
+    --palette-900: 8, 76, 60;
+    --palette-950: 3, 43, 35;
 }
+
 .DARKshamrock-theme {
-    --shamrock-950: rgba(3, 43, 35, 1);
-    --shamrock-900: rgba(8, 76, 60, 1);
-    --shamrock-800: rgba(8, 93, 72, 1);
-    --shamrock-700: rgba(6, 118, 90, 1);
-    --shamrock-600: rgba(8, 147, 109, 1);
-    --shamrock-500: rgba(20, 181, 133, 1);
-    --shamrock-400: rgba(61, 209, 160, 1);
-    --shamrock-300: rgba(113, 228, 186, 1);
-    --shamrock-200: rgba(169, 241, 210, 1);
-    --shamrock-100: rgba(210, 249, 230, 1);
-    --shamrock-50: rgba(236, 253, 246, 1);
+    --palette-950: 3, 43, 35;
+    --palette-900: 8, 76, 60;
+    --palette-800: 8, 93, 72;
+    --palette-700: 6, 118, 90;
+    --palette-600: 8, 147, 109;
+    --palette-500: 20, 181, 133;
+    --palette-400: 61, 209, 160;
+    --palette-300: 113, 228, 186;
+    --palette-200: 169, 241, 210;
+    --palette-100: 210, 249, 230;
+    --palette-50: 236, 253, 246;
+    --boxBorderColor: rgb(8, 76, 60);
 }
 
 /* ---------------  MAIN RULES  --------------- */
@@ -121,7 +153,7 @@ html {
 body {
     overscroll-behavior: contain;
     margin: 0;
-    background: var(--palette-100);
+    background: rgb(var(--palette-50));
     width: 100vw;
     overflow-x: hidden;
     overscroll-behavior: none;
@@ -194,3 +226,440 @@ h5 {
 
 /* ---------------  ANIMATIONS --------------- */
 
+
+
+
+
+
+/* ---------------  ALL RULES  --------------- */
+
+#newVersionBox {
+    display: none;
+    z-index: 11;
+    position: fixed;
+    height: fit-content;
+    width: 70%;
+    background-color: rgba(var(--palette-100), 0.5);
+    padding: 20px;
+    border-radius: 20px;
+    top: 50%;
+    bottom: 50%;
+    left: 50%;
+    right: 50%;
+    transform: translateX(-50%) translateY(-70%);
+    border: 2px solid rgb(var(--palette-400));
+}
+
+#newVersionBox h1 {
+    text-align: center;
+    font-weight: 600;
+    color: rgb(var(--palette-950)) !important;
+}
+
+#newVersionBox h3 {
+    margin: 30px 0;
+    font-family: var(--StandardTextFont);
+    color: rgb(var(--palette-900));
+    font-display: swap;
+    text-align: center;
+    font-weight: 400;
+}
+
+#newVersionBox p {
+    font-family: var(--StandardTextFont);
+    font-display: swap;
+    color: rgb(var(--palette-900));
+    text-align: left;
+    font-weight: 400;
+    margin-top: 20px;
+}
+
+#newVersionBox p span {
+    padding: 5px;
+    margin-left: 5px;
+    color: rgb(var(--palette-100));
+    background-color: rgb(var(--palette-800));
+    border-radius: 10px;
+}
+
+#blurOverlay {
+    z-index: 10;
+    position: fixed;
+    height: 100vh;
+    width: 100vw;
+    backdrop-filter: blur(10px);
+    background-color: rgba(var(--palette-950), 0.5);
+    display: none;
+}
+
+.card {
+    margin: 20px;
+    border: solid 2px rgb(var(--palette-600));
+    background-color: rgb(var(--palette-200));
+    border-radius: 20px;
+    padding: 20px;
+}
+
+.card h1 {
+    font-family: var(--HeadingFont);
+    color: rgb(var(--palette-950));
+    margin: 0 0 5px 0;
+}
+
+.card h2 {
+    font-family: var(--HeadingFont);
+    color: rgb(var(--palette-900));
+    margin: 0 0 15px 0;
+}
+
+.card p {
+    font-family: var(--StandardTextFont);
+    color: rgb(var(--palette-800));
+    margin: 0;
+}
+
+button span {
+    color: rgb(var(--palette-100)) !important;
+    margin-right: 5px;
+}
+
+button {
+    font-family: var(--StandardTextFont);
+    font-weight: 500;
+    border-radius: 50px;
+    border: solid 2px rgb(var(--palette-600));
+    display: flex;
+    font-size: 18px;
+    padding: 5px 10px;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(var(--palette-500));
+    color: rgb(var(--palette-100));
+    transition: 0.3s all ease-in-out;
+}
+
+button:hover {
+    background-color: rgb(var(--palette-600));
+}
+
+button:active {
+    background-color: rgb(var(--palette-700));
+    scale: 0.92;
+}
+
+button.buttonDisabled {
+    background-color: rgb(var(--palette-100));
+    color: var(rgb(--palette-400));
+}
+
+#navbar {
+    height: 6.5vh;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0 15px 0;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100vw;
+    overscroll-behavior: contain;
+    background-color: rgb(var(--palette-50));
+    border-top: solid 2px;
+    border-color: var(--boxBorderColor);
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
+    transition: 0.3s background-color ease;
+}
+
+.navbarBtn {
+    background-color: transparent;
+    width: 30%;
+    margin: 10px;
+    height: 100%;
+    display: flex;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    font-weight: 400;
+    flex-direction: column;
+    cursor: pointer;
+    z-index: 2;
+}
+
+.navbarBtn p {
+    margin: 5px 0;
+    font-family: var(--StandardTextFont);
+    font-display: swap;
+    color: rgb(var(--palette-950));
+    line-height: 0.7;
+    font-size: 1em;
+    color: var(text);
+    text-align: justify;
+}
+
+.material-symbols-outlined {
+    color: rgb(var(--palette-950));
+}
+
+.appTabsShown {
+    display: block;
+}
+
+.appTabsHidden {
+    display: none;
+}
+
+.navbarBtn span {
+    margin: 5px 0;
+    font-weight: 400;
+    border-radius: 20px;
+    font-size: 1.7em;
+    font-weight: 500;
+    transition: 0.25s;
+    border: solid 1px rgba(0, 0, 0, 0);
+}
+
+.navbarIcon {
+    padding: 3px 5px;
+}
+
+.navbarBtn:active span {
+    border: solid 1px rgb(var(--palette-950));
+    padding: 3px 20px;
+}
+
+.navbarIconActive {
+    padding: 3px 20px;
+    background-color: rgb(var(--palette-200));
+    transition: 0.3s background ease;
+    margin: 0;
+    font-variation-settings:
+        'FILL' 1;
+}
+
+.navbarLabelActive {
+    font-weight: 700;
+}
+
+#navbarFixed {
+    display: block;
+    position: relative;
+    z-index: -1;
+    bottom: 0;
+    width: 100%;
+    height: 10vh;
+    background-color: transparent;
+}
+
+.settingsSection {
+    width: 92%;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    margin: 0px auto 15px auto;
+    padding: 5px 0;
+    border: solid 2px rgb(var(--palette-400));
+    background-color: rgb(var(--palette-100));
+    border-radius: 20px;
+}
+
+.settingHeader {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    font-size: 1.8em;
+    font-family: var(--HeadingFont);
+    font-display: swap;
+    font-weight: 500;
+    text-align: center;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    color: rgb(var(--palette-950));
+}
+
+.switch-container {
+    display: grid;
+    grid-template-columns: 7fr 3fr;
+    margin: 10px 5px;
+    align-items: center;
+}
+
+.switch-container button {
+    margin-left: auto !important;
+}
+
+.appInfoBox {
+    grid-template-columns: 2fr 3fr;
+    text-align: right;
+}
+
+#appFooterContainer {
+    opacity: 0.8;
+    background-color: transparent;
+    display: flex;
+    bottom: 0;
+    margin: 25px auto 5px auto;
+    justify-content: center;
+    flex-direction: row;
+}
+
+.roundedWakaBadge {
+    margin: 10px;
+    width: 50%;
+    border-radius: 6px;
+    border-color: var(--boxBorderColor);
+    box-shadow: var(--boxShadow4);
+}
+
+#appFooterContainer label {
+    margin: auto 10px;
+}
+
+#socialIcon {
+    width: 35px;
+    height: 35px;
+    align-items: center;
+    display: flex;
+    opacity: 0.8;
+    filter: var(--socialIconCol);
+}
+
+#socialIcon:active {
+    transition: .2s all;
+    rotate: 360deg;
+}
+
+.annoyedCatDiv {
+    animation: getStarted 0.5s ease-in-out;
+    width: 80vw;
+    height: 50vh;
+    display: flex;
+    flex-direction: column;
+    border: solid 2px rgb(var(--palette-900));
+    border-radius: 20px;
+    box-shadow: var(--boxShadow2);
+    justify-content: center;
+    padding: 10px;
+    background-color: rgb(131, 39, 39);
+    align-items: center;
+    margin: auto auto;
+}
+
+.annoyedCatDiv img {
+    opacity: 0.8;
+    rotate: 180deg;
+}
+
+.annoyedCatDiv h1 {
+    font-family: var(--StandardTextFont);
+    font-display: swap;
+    font-weight: 800;
+    color: rgb(var(--palette-950));
+    text-align: center;
+    margin-top: 20px;
+}
+
+.appIcon {
+    width: 40px;
+    display: flex;
+    margin: auto 10px;
+    justify-content: center;
+    align-items: center;
+    transition: 0.3s scale ease-in-out;
+}
+
+.appIcon:active {
+    scale: 0.90;
+}
+
+.nerdLinks {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 0 5px 5px 5px;
+    font-family: var(--StandardTextFont);
+    font-display: swap;
+    font-weight: 300;
+    font-size: 0.75em;
+    text-decoration: underline 1px rgb(var(--palette-900));
+}
+
+a {
+    text-decoration: underline 1px rgb(var(--palette-800));
+    color: rgb(var(--palette-900));
+}
+
+.switch-container input,
+.switch-container label,
+.switch-container button {
+    /* height: 40px; */
+    display: flex;
+    align-items: center;
+    /* font-weight: 500; */
+    margin: 5px 10px;
+    text-align: center;
+}
+
+.alignToRight {
+    justify-content: right;
+}
+
+label {
+    font-family: var(--StandardTextFont);
+    text-align: left;
+    font-weight: 400;
+    margin: 10px 10px 2px 10px;
+    color: rgb(var(--palette-900));
+    font-size: 1.2em;
+}
+
+.switch-label {
+    grid-column: 1;
+    font-family: var(--StandardTextFont);
+    text-align: left;
+    font-weight: 400;
+    margin: 0 10px 0 10px;
+    color: rgb(var(--palette-900));
+    font-size: 1.2em;
+}
+
+.switch {
+    grid-column: 2;
+    justify-self: end;
+}
+
+.switch-input {
+    display: none !important;
+}
+
+.switch-toggle {
+    position: relative;
+    display: inline-block;
+    width: 65px;
+    height: 40px;
+    background-color: var(--solidCol4);
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+.switch-toggle:before {
+    content: '';
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    width: 30px;
+    height: 30px;
+    background-color: #fff;
+    border-radius: 50%;
+    transition: transform 0.3s;
+}
+
+.switch-input:checked+.switch-toggle {
+    background-color: var(--transAccentColor1);
+}
+
+.switch-input:checked+.switch-toggle:before {
+    transform: translateX(25px);
+}
