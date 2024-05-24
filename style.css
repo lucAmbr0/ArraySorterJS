@@ -9,7 +9,7 @@
     --palette-50: rgba(242, 246, 252, 1);
     --palette-100: rgba(226, 236, 247, 1);
     --palette-200: rgba(203, 222, 242, 1);
-    --palette-300: rgba(168, 201, 232, 1);
+    --palette-300: rgb(168, 201, 232);
     --palette-400: rgba(126, 172, 220, 1);
     --palette-500: rgba(95, 144, 210, 1);
     --palette-600: rgba(74, 117, 196, 1);
@@ -99,3 +99,98 @@
     --shamrock-100: rgba(210, 249, 230, 1);
     --shamrock-50: rgba(236, 253, 246, 1);
 }
+
+/* ---------------  MAIN RULES  --------------- */
+
+html {
+    scroll-behavior: smooth;
+    -webkit-tap-highlight-color: transparent;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+::-webkit-scrollbar {
+    display: none;
+    scrollbar-width: none;
+}
+
+body {
+    overscroll-behavior: contain;
+    margin: 0;
+    background: var(--palette-100);
+    width: 100vw;
+    overflow-x: hidden;
+    overscroll-behavior: none;
+    transition: 0.3s background ease;
+}
+
+select:focus,
+input:focus {
+    outline: none;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+    font-family: var(--HeadingFont);
+    font-display: swap;
+    margin: 0;
+}
+
+/* -------------------- FONTS --------------------*/
+
+@font-face {
+    font-family: 'Poppins';
+    src: url('Fonts/Poppins/Poppins-Light.ttf') format('truetype');
+    font-weight: 300;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Poppins';
+    src: url('Fonts/Poppins/Poppins-Normal.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Poppins';
+    src: url('Fonts/Poppins/Poppins-Medium.ttf') format('truetype');
+    font-weight: 500;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Poppins';
+    src: url('Fonts/Poppins/Poppins-SemiBold.ttf') format('truetype');
+    font-weight: 600;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Poppins';
+    src: url('Fonts/Poppins/Poppins-Bold.ttf') format('truetype');
+    font-weight: 700;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Noto Sans';
+    src: url('Fonts/Noto_Sans/NotoSans-VariableFont_wdth\,wght.ttf') format('truetype');
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Rubik';
+    src: url('Fonts/Rubik/Rubik-VariableFont_wght.ttf') format('truetype');
+    font-style: normal;
+}
+
+/* ---------------  ANIMATIONS --------------- */
+
