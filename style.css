@@ -1,0 +1,101 @@
+/* 
+    Array Sorter - CSS stylesheet
+    Made with <3 by @lucAmbr0 
+*/
+
+/* ---------------  COLOR PALETTE VARIABLES  --------------- */
+
+:root {
+    --palette-50: rgba(242, 246, 252, 1);
+    --palette-100: rgba(226, 236, 247, 1);
+    --palette-200: rgba(203, 222, 242, 1);
+    --palette-300: rgba(168, 201, 232, 1);
+    --palette-400: rgba(126, 172, 220, 1);
+    --palette-500: rgba(95, 144, 210, 1);
+    --palette-600: rgba(74, 117, 196, 1);
+    --palette-700: rgba(65, 100, 180, 1);
+    --palette-800: rgba(58, 83, 147, 1);
+    --palette-900: rgba(51, 71, 117, 1);
+    --palette-950: rgba(35, 44, 72, 1);
+}
+
+.LIGHTsan-marino-theme {
+    --palette-50: rgba(242, 246, 252, 1);
+    --palette-100: rgba(226, 236, 247, 1);
+    --palette-200: rgba(203, 222, 242, 1);
+    --palette-300: rgba(168, 201, 232, 1);
+    --palette-400: rgba(126, 172, 220, 1);
+    --palette-500: rgba(95, 144, 210, 1);
+    --palette-600: rgba(74, 117, 196, 1);
+    --palette-700: rgba(65, 100, 180, 1);
+    --palette-800: rgba(58, 83, 147, 1);
+    --palette-900: rgba(51, 71, 117, 1);
+    --palette-950: rgba(35, 44, 72, 1);
+  }
+.DARKsan-marino-theme {
+    --palette-950: rgba(35, 44, 72, 1);
+    --palette-900: rgba(51, 71, 117, 1);
+    --palette-800: rgba(58, 83, 147, 1);
+    --palette-700: rgba(65, 100, 180, 1);
+    --palette-600: rgba(74, 117, 196, 1);
+    --palette-500: rgba(95, 144, 210, 1);
+    --palette-400: rgba(126, 172, 220, 1);
+    --palette-300: rgba(168, 201, 232, 1);
+    --palette-200: rgba(203, 222, 242, 1);
+    --palette-100: rgba(226, 236, 247, 1);
+    --palette-50: rgba(242, 246, 252, 1);
+  }
+
+.LIGHTred-damask-theme {
+    --palette-50: rgba(252, 245, 240, 1);
+    --palette-100: rgba(248, 232, 220, 1);
+    --palette-200: rgba(239, 207, 185, 1);
+    --palette-300: rgba(229, 174, 140, 1);
+    --palette-400: rgba(218, 133, 93, 1);
+    --palette-500: rgba(209, 103, 61, 1);
+    --palette-600: rgba(195, 82, 51, 1);
+    --palette-700: rgba(162, 63, 44, 1);
+    --palette-800: rgba(130, 53, 42, 1);
+    --palette-900: rgba(105, 45, 37, 1);
+    --palette-950: rgba(56, 21, 18, 1);
+}
+.DARKred-damask-theme {
+    --palette-950: rgba(56, 21, 18, 1);
+    --palette-900: rgba(105, 45, 37, 1);
+    --palette-800: rgba(130, 53, 42, 1);
+    --palette-700: rgba(162, 63, 44, 1);
+    --palette-600: rgba(195, 82, 51, 1);
+    --palette-500: rgba(209, 103, 61, 1);
+    --palette-400: rgba(218, 133, 93, 1);
+    --palette-300: rgba(229, 174, 140, 1);
+    --palette-200: rgba(239, 207, 185, 1);
+    --palette-100: rgba(248, 232, 220, 1);
+    --palette-50: rgba(252, 245, 240, 1);
+}
+
+.LIGHTshamrock-theme {
+    --shamrock-50: rgba(236, 253, 246, 1);
+    --shamrock-100: rgba(210, 249, 230, 1);
+    --shamrock-200: rgba(169, 241, 210, 1);
+    --shamrock-300: rgba(113, 228, 186, 1);
+    --shamrock-400: rgba(61, 209, 160, 1);
+    --shamrock-500: rgba(20, 181, 133, 1);
+    --shamrock-600: rgba(8, 147, 109, 1);
+    --shamrock-700: rgba(6, 118, 90, 1);
+    --shamrock-800: rgba(8, 93, 72, 1);
+    --shamrock-900: rgba(8, 76, 60, 1);
+    --shamrock-950: rgba(3, 43, 35, 1);
+}
+.DARKshamrock-theme {
+    --shamrock-950: rgba(3, 43, 35, 1);
+    --shamrock-900: rgba(8, 76, 60, 1);
+    --shamrock-800: rgba(8, 93, 72, 1);
+    --shamrock-700: rgba(6, 118, 90, 1);
+    --shamrock-600: rgba(8, 147, 109, 1);
+    --shamrock-500: rgba(20, 181, 133, 1);
+    --shamrock-400: rgba(61, 209, 160, 1);
+    --shamrock-300: rgba(113, 228, 186, 1);
+    --shamrock-200: rgba(169, 241, 210, 1);
+    --shamrock-100: rgba(210, 249, 230, 1);
+    --shamrock-50: rgba(236, 253, 246, 1);
+}
