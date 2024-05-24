@@ -1,0 +1,75 @@
+{
+  "name": "Array Sorter",
+  "short_name": "Array Sorter",
+  "description": "A webapp enabling users to simulate array sorting algorithms like selection sort, quick sort, etc., offering a clean UI and customization options.",
+  "start_url": "index.html",
+  "id": "ArraySorter",
+  "display": "standalone",
+  "background_color": "#151515",
+  "theme_color": "#151515",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "https://github.com/lucAmbr0/ArraySorterJS/blob/master/icons/icon-any-192x192.png?raw=true",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "https://github.com/lucAmbr0/ArraySorterJS/blob/master/icons/icon-any-512x512.png?raw=true",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "https://github.com/lucAmbr0/ArraySorterJS/blob/master/icons/icon-maskable-192x192.png?raw=true",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "https://github.com/lucAmbr0/ArraySorterJS/blob/master/icons/icon-maskable-512x512.png?raw=true",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "https://github.com/lucAmbr0/ArraySorterJS/blob/master/screenshots/mobile-screenshot1.png?raw=true",
+      "sizes": "1082x2402",
+      "type": "image/png",
+      "platform": "mobile"
+    },
+    {
+      "src": "https://github.com/lucAmbr0/ArraySorterJS/blob/master/screenshots/mobile-screenshot2.png?raw=true",
+      "sizes": "1082x2402",
+      "type": "image/png",
+      "platform": "mobile"
+    },
+    {
+      "src": "https://github.com/lucAmbr0/ArraySorterJS/blob/master/screenshots/mobile-screenshot3.png?raw=true",
+      "sizes": "1082x2402",
+      "type": "image/png",
+      "platform": "mobile"
+    },
+    {
+      "src": "https://github.com/lucAmbr0/ArraySorterJS/blob/master/screenshots/mobile-screenshot4.png?raw=true",
+      "sizes": "1082x2402",
+      "type": "image/png",
+      "platform": "mobile"
+    },
+    {
+      "src": "https://github.com/lucAmbr0/ArraySorterJS/blob/master/screenshots/mobile-screenshot5.png?raw=true",
+      "sizes": "1082x2402",
+      "type": "image/png",
+      "platform": "mobile"
+    },
+    {
+      "src": "https://github.com/lucAmbr0/ArraySorterJS/blob/master/screenshots/mobile-screenshot6.png?raw=true",
+      "sizes": "1082x2402",
+      "type": "image/png",
+      "platform": "mobile"
+    }
+  ]
+}
