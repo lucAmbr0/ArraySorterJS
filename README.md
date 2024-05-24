@@ -49,6 +49,36 @@ I will try to keep the repository structure as clean as possible to make mainten
 ```
 .
 │   index.html
+│   index.js
+│   LICENSE
+│   manifest.json
+│   README.md
+│   service_worker.js
+│   style.css
+│
+├───Fonts
+│   ├───Noto_Sans
+│   │       NotoSans-Italic-VariableFont_wdth,wght.ttf
+│   │       NotoSans-VariableFont_wdth,wght.ttf
+│   │
+│   ├───Poppins
+│   │       Poppins-Bold.ttf
+│   │       Poppins-Light.ttf
+│   │       Poppins-Medium.ttf
+│   │       Poppins-Regular.ttf
+│   │       Poppins-SemiBold.ttf
+│   │
+│   └───Rubik
+│           Rubik-VariableFont_wght.ttf
+│
+├───icons
+│       github-mark.svg
+│       icon-any-192x192.png
+│       icon-any-512x512.png
+│       icon-maskable-192x192.png
+│       icon-maskable-512x512.png
+│
+└───screenshots
 ```
 
 ## :cherry_blossom: Community
