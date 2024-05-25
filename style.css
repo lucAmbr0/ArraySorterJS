@@ -297,7 +297,7 @@ h5 {
     border: solid 2px rgb(var(--palette-600));
     background-color: rgb(var(--palette-200));
     border-radius: 20px;
-    padding: 20px;
+    padding: 10px;
 }
 
 .card h1 {
@@ -662,4 +662,65 @@ label {
 
 .switch-input:checked+.switch-toggle:before {
     transform: translateX(25px);
+}
+
+#arrayTab {
+    overflow-y: hidden;
+}
+
+#barsBarContainer {
+    margin: 2vh;
+}
+
+.embedContainer h2 {
+    margin: 20px;
+}
+
+.embedContainer table {
+    background-color: rgb(var(--palette-200));
+    margin: 10px;
+}
+
+.simulationResultsTitle {
+    margin: 40px;
+}
+
+.simulationResultsContainer {
+    border: solid 1px rgb(var(--palette-400));
+    background-color: rgb(var(--palette-50));
+    padding: 5px;
+    width: 100%;
+    border-radius: 10px;
+}
+
+.simulationResultsContainer tbody {
+    margin: 10px;
+    font-family: var(--StandardTextFont);
+}
+
+.embedContainer {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin-bottom: 20px;
+    overflow: hidden;
+    padding-bottom: 5px;
+    background-color: rgb(var(--palette-50));
+    border: solid 1px rgb(var(--palette-400));
+    border-radius: 10px;
+}
+
+.embedContainer .bar {
+    display: flex;
+    height: 20px;
+    margin: 5px 5px 0 5px;
+    border: solid 2px transparent;
+    border-radius: 5px;
+    background-color: rgb(var(--palette-300));
+    transition: 0.3s background-color ease-in-out;
+}
+
+.embedContainer .active {
+    border: solid 2px rgb(var(--palette-700));
+    background-color: rgb(var(--palette-500));
 }
