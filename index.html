@@ -59,11 +59,9 @@
       </button>
     </div>
     <div class="appTabs" id="arrayTab">
-      <div class="card">
-        <h1>Array</h1>
-        <div class="embedContainer">
-          <div class="bar"></div>
-          <div class="bar"></div>
+      <div class="card" id="arrayTabCard">
+        <h1 id="arrayCardTitle">Array Elements</h1>
+        <div class="embedContainer" id="barsBarContainer">
           <div class="bar"></div>
           <div class="bar"></div>
           <div class="bar active"></div>
@@ -73,7 +71,42 @@
           <div class="bar"></div>
           <div class="bar"></div>
         </div>
-          <h2 class="simulationResultsTitle">Array Simulation</h2>
+        <div class="switch-container">
+          <div class="switch-label">Slow-motion sort</div>
+          <div class="switch">
+            <input
+              type="checkbox"
+              id="visualizeDelay"
+              class="switch-input"
+              onchange="toggleSlowMoSort()"
+            />
+            <label for="visualizeDelay" class="switch-toggle"></label>
+          </div>
+          <div class="switch-label">Array elements</div>
+            <input
+              type="range"
+              id="numOfElements"
+              class="switch-input"
+              onchange="changeElementsAmount()"
+            />
+        <div class="fastTune">
+          <input type="range">
+        </div>
+        <div class="arrayTabRunButtonsContainer">
+          <button class="buttonOutline">Empty array</button>
+          <button>Fill array</button>
+          </div>
+          <div></div>
+          <div class="arrayTabRunButtonsContainer">
+            <button class="buttonOutline">Run all</button>
+            <button>Run Bubble Sort</button>
+          </div>
+          <div></div>
+      </div>
+    </div>
+    <div class="appTabs" id="customizeTab">
+      <div class="card">
+      <h1 id="arrayCardTitle">Simulation Results</h2>
           <table class="simulationResultsContainer">
             <tbody>
               <tr>
@@ -101,9 +134,7 @@
               </tr>
             </tbody>
           </table>
-      </div>
-    </div>
-    <div class="appTabs" id="customizeTab">
+        </div>
       <div class="card">
         <h1>Customize Tab</h1>
         <h2>Tab n.2</h2>
@@ -185,16 +216,16 @@
     </div>
     <nav id="navbar">
       <div class="navbarBtn" onclick="navbarAction(0)">
-        <span class="material-symbols-outlined navbarIcon"> database </span>
-        <p class="navbarLabel navbarLabelActive">Array</p>
+        <span class="material-symbols-outlined navbarIcon"> visibility </span>
+        <p class="navbarLabel navbarLabelActive">Simulate</p>
       </div>
       <div class="navbarBtn" onclick="navbarAction(1)">
-        <span class="material-symbols-outlined navbarIcon"> palette </span>
-        <p class="navbarLabel">Customize</p>
+        <span class="material-symbols-outlined navbarIcon"> database </span>
+        <p class="navbarLabel">Results</p>
       </div>
       <div class="navbarBtn" onclick="navbarAction(2)">
-        <span class="material-symbols-outlined navbarIcon"> settings </span>
-        <p class="navbarLabel">Settings</p>
+        <span class="material-symbols-outlined navbarIcon"> palette </span>
+        <p class="navbarLabel">Customize</p>
       </div>
     </nav>
     <div id="navbarFixed"></div>
