@@ -83,26 +83,39 @@
             <label for="visualizeDelay" class="switch-toggle"></label>
           </div>
           <div class="switch-label">Array elements</div>
+          <div style="display: flex;">
             <input
-              type="range"
-              id="numOfElements"
-              class="switch-input"
-              onchange="changeElementsAmount()"
-            />
-        <div class="fastTune">
-          <input type="range">
-        </div>
-        <div class="arrayTabRunButtonsContainer">
-          <button class="buttonOutline">Empty array</button>
-          <button>Fill array</button>
+            type="range"
+            id="numOfElementsRange"
+            class="switch-input range-input"
+            onchange="changeElementsAmount()"
+            min="5"
+            max="80"
+            placeholder="30"
+          >
+            <p id="arrayElementsDisplay">50</p>
           </div>
-          <div></div>
-          <div class="arrayTabRunButtonsContainer">
-            <button class="buttonOutline">Run all</button>
-            <button>Run Bubble Sort</button>
-          </div>
-          <div></div>
       </div>
+      <div class="arrayTabRunButtonsContainer">
+        <button class="buttonOutline">
+          <span class="material-symbols-outlined">
+            fast_forward
+          </span>Run all</button>
+          <button id="runSelectedMethodBtn">
+            Run
+            <select name="SortMethod" id="sortMethodSelection">
+              <option value="bubbleSort">Bubble Sort</option>
+              <option value="selectionSort">Selection Sort</option>
+              <option value="insertionSort">Insertion Sort</option>
+              <option value="bogoSort">Bogo Sort</option>
+            </select>
+          </button>
+          <button class="buttonOutline" onclick="randomizeBars()">
+            <span class="material-symbols-outlined">
+            shuffle
+            </span>Randomize array</button>
+        </div>
+    </div>
     </div>
     <div class="appTabs" id="customizeTab">
       <div class="card">
