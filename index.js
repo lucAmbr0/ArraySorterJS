@@ -7,19 +7,19 @@
 
 serviceWorker();
 function serviceWorker() {
-    if ('serviceWorker' in navigator) {
-        console.log('Service worker compatible');
-        window.addEventListener('load', () => {
-            navigator.serviceWorker
-                .register('https://lucambr0.github.io/ArraySorterJS/service_worker.js')
-                .then(reg => {
-                    console.log('Service worker registered');
-                })
-                .catch(err => {
-                    console.log(err);
-                })
+  if ('serviceWorker' in navigator) {
+    console.log('Service worker compatible');
+    window.addEventListener('load', () => {
+      navigator.serviceWorker
+        .register('https://lucambr0.github.io/ArraySorterJS/service_worker.js')
+        .then(reg => {
+          console.log('Service worker registered');
         })
-    }
+        .catch(err => {
+          console.log(err);
+        })
+    })
+  }
 }
 
 // ---------------  NAVBAR  ---------------
@@ -37,37 +37,37 @@ appTabs.forEach(appTab => appTab.classList.add("appTabsHidden"));
 let tab;
 let currentTab = -1;
 if (localStorage.getItem('tab')) {
-    tab = parseInt(localStorage.getItem('tab'));
+  tab = parseInt(localStorage.getItem('tab'));
 } else {
-    tab = 0;
+  tab = 0;
 }
 
 // Calls the function to display the right tab
 navbarAction(tab);
 
 function navbarAction(tab) {
-    if (currentTab !== tab) {
-        currentTab = tab;
-        localStorage.setItem('tab', tab);
-        navbarIcon.forEach(item => item.classList.remove("navbarIconActive"));
-        navbarLabel.forEach(item => item.classList.remove("navbarLabelActive"));
-        navbarIcon[tab].classList.add("navbarIconActive");
-        navbarLabel[tab].classList.add("navbarLabelActive");
-        appTabs.forEach(appTab => appTab.classList.remove("appTabsShown"));
-        appTabs.forEach(appTab => appTab.classList.add("appTabsHidden"));
-        appTabs[tab].classList.remove("appTabsHidden");
-        appTabs[tab].classList.add("appTabsShown");
-        window.scrollTo({
-            top: 0,
-            behavior: 'instant'
-        });
-    }
+  if (currentTab !== tab) {
+    currentTab = tab;
+    localStorage.setItem('tab', tab);
+    navbarIcon.forEach(item => item.classList.remove("navbarIconActive"));
+    navbarLabel.forEach(item => item.classList.remove("navbarLabelActive"));
+    navbarIcon[tab].classList.add("navbarIconActive");
+    navbarLabel[tab].classList.add("navbarLabelActive");
+    appTabs.forEach(appTab => appTab.classList.remove("appTabsShown"));
+    appTabs.forEach(appTab => appTab.classList.add("appTabsHidden"));
+    appTabs[tab].classList.remove("appTabsHidden");
+    appTabs[tab].classList.add("appTabsShown");
+    window.scrollTo({
+      top: 0,
+      behavior: 'instant'
+    });
+  }
 }
 
 function getStarted() {
-    setTimeout(() => {
-        navbarAction(1);
-    }, 350)
+  setTimeout(() => {
+    navbarAction(1);
+  }, 350)
 }
 
 // ---------------  CHECK IF THERE'S A NEW VERSION  ---------------
@@ -76,8 +76,8 @@ let deviceVersion;
 let latestVersion;
 checkVersion();
 function checkVersion() {
-  if (localStorage.getItem("version")) {
-    deviceVersion = localStorage.getItem("version");
+  if (localStorage.getItem("ARRversion")) {
+    deviceVersion = localStorage.getItem("ARRversion");
     latestVersion = document.getElementById("latestVersionDisplay").textContent;
     if (deviceVersion != latestVersion) {
       document.getElementById("prevVer").textContent = deviceVersion;
@@ -91,10 +91,10 @@ function checkVersion() {
     }
   }
   else {
-    localStorage.setItem('version', document.getElementById("latestVersionDisplay").textContent);
+    localStorage.setItem('ARRversion', document.getElementById("latestVersionDisplay").textContent);
   }
-  localStorage.setItem("version", latestVersion);
-  deviceVersion = localStorage.getItem("version");
+  localStorage.setItem("ARRversion", latestVersion);
+  deviceVersion = localStorage.getItem("ARRversion");
 }
 
 function closeUpdateNotice() {
@@ -213,4 +213,38 @@ function annoyGitCat() {
       }, 1500);
     }, 2500);
   }
+}
+
+// ---------------  CHANGE NUMBER OF ELEMENTS  ---------------
+const rangeInput = document.getElementById('numOfElementsRange');
+const displayValue = document.getElementById('arrayElementsDisplay');
+let amountOfBars = rangeInput.value;
+
+function changeElementsAmount() {
+  displayValue.textContent = rangeInput.value;
+  amountOfBars = rangeInput.value;
+  setBarQuantity(amountOfBars)
+}
+
+let bars = document.querySelectorAll(".bar");
+let barContainer = document.getElementById("barsBarContainer");
+
+function setBarQuantity(qta) {
+  barContainer.innerHTML = ``;
+  for (let i = 0; i < qta; i++) {
+    barContainer.innerHTML += `<div class="bar"></div>`;
+  }
+  randomizeBars();
+}
+
+let minBarValue = 0;
+let maxBarValue = 100;
+
+randomizeBars();
+function randomizeBars() {
+  bars = document.querySelectorAll(".bar");
+  bars.forEach((bar) => {
+    const width = (Math.floor(Math.random() * (maxBarValue - minBarValue)) + minBarValue); // generate a random width between 1 and 100
+    bar.style.width = `${width}%`; // set the width of the bar
+  });
 }

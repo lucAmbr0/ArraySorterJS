@@ -12,6 +12,7 @@
     --palette-300: 168, 201, 232;
     --palette-400: 126, 172, 220;
     --palette-500: 95, 144, 210;
+    /* #5f90d2 */
     --palette-600: 74, 117, 196;
     --palette-700: 65, 100, 180;
     --palette-800: 58, 83, 147;
@@ -293,9 +294,9 @@ h5 {
 }
 
 .card {
-    margin: 20px;
+    margin: 2vh;
     border: solid 2px rgb(var(--palette-600));
-    background-color: rgb(var(--palette-200));
+    background-color: rgb(var(--palette-100));
     border-radius: 20px;
     padding: 10px;
 }
@@ -303,7 +304,7 @@ h5 {
 .card h1 {
     font-family: var(--HeadingFont);
     color: rgb(var(--palette-950));
-    margin: 0 0 5px 0;
+    margin: 0 0 5px 5px;
 }
 
 .card h2 {
@@ -326,8 +327,8 @@ button span {
 button {
     font-family: var(--StandardTextFont);
     font-weight: 500;
-    border-radius: 50px;
-    border: solid 2px rgb(var(--palette-600));
+    border-radius: 12px;
+    border: none;
     display: flex;
     font-size: 18px;
     padding: 5px 10px;
@@ -338,9 +339,9 @@ button {
     transition: 0.3s all ease-in-out;
 }
 
-button:hover {
+/* button:hover {
     background-color: rgb(var(--palette-600));
-}
+} */
 
 button:active {
     background-color: rgb(var(--palette-700));
@@ -350,6 +351,22 @@ button:active {
 button.buttonDisabled {
     background-color: rgb(var(--palette-100));
     color: var(rgb(--palette-400));
+}
+
+button.buttonOutline {
+    background-color: transparent;
+    color: rgb(var(--palette-500));
+    border: solid 2px rgb(var(--palette-500));
+}
+
+button.buttonOutline span {
+    color: rgb(var(--palette-500)) !important;
+}
+
+button.buttonOutline:active {
+    background-color: transparent;
+    color: rgb(var(--palette-800));
+    border: solid 2px rgb(var(--palette-800));
 }
 
 #navbar {
@@ -479,13 +496,9 @@ button.buttonDisabled {
 
 .switch-container {
     display: grid;
-    grid-template-columns: 7fr 3fr;
-    margin: 10px 5px;
+    grid-template-columns: 5fr 5fr;
     align-items: center;
-}
-
-.switch-container button {
-    margin-left: auto !important;
+    margin: .5vh;
 }
 
 .appInfoBox {
@@ -598,7 +611,7 @@ a {
     display: flex;
     align-items: center;
     /* font-weight: 500; */
-    margin: 5px 10px;
+    margin: 0.5vh 0;
     text-align: center;
 }
 
@@ -619,8 +632,8 @@ label {
     grid-column: 1;
     font-family: var(--StandardTextFont);
     text-align: left;
+    margin: 7px 0;
     font-weight: 400;
-    margin: 0 10px 0 10px;
     color: rgb(var(--palette-900));
     font-size: 1.2em;
 }
@@ -639,9 +652,10 @@ label {
     display: inline-block;
     width: 65px;
     height: 40px;
-    background-color: var(--solidCol4);
+    background-color: rgb(var(--palette-300));
     border-radius: 20px;
     cursor: pointer;
+    transition: 0.2s background-color ease-in-out;
 }
 
 .switch-toggle:before {
@@ -657,7 +671,7 @@ label {
 }
 
 .switch-input:checked+.switch-toggle {
-    background-color: var(--transAccentColor1);
+    background-color: rgb(var(--palette-500));
 }
 
 .switch-input:checked+.switch-toggle:before {
@@ -668,33 +682,43 @@ label {
     overflow-y: hidden;
 }
 
+#arrayTabCard {
+    height: 83vh;
+    padding: 1vh;
+}
+
+#arrayCardTitle {
+    margin: 1vh;
+    font-size: 3.5vh;
+}
+
 #barsBarContainer {
-    margin: 2vh;
+    height: 52vh;
 }
 
 .embedContainer h2 {
-    margin: 20px;
+    margin: 2vh;
 }
 
 .embedContainer table {
     background-color: rgb(var(--palette-200));
-    margin: 10px;
+    margin: 1vh;
 }
 
-.simulationResultsTitle {
-    margin: 40px;
+#simulationResultsTitle {
+    margin: 1vh 0.5vh;
 }
 
 .simulationResultsContainer {
     border: solid 1px rgb(var(--palette-400));
     background-color: rgb(var(--palette-50));
-    padding: 5px;
+    padding: 0.5vh;
     width: 100%;
     border-radius: 10px;
 }
 
 .simulationResultsContainer tbody {
-    margin: 10px;
+    margin: 1vh;
     font-family: var(--StandardTextFont);
 }
 
@@ -702,25 +726,89 @@ label {
     display: flex;
     flex-direction: column;
     width: 100%;
-    margin-bottom: 20px;
+    margin-bottom: 2vh;
     overflow: hidden;
-    padding-bottom: 5px;
+    padding-bottom: 0.3vh;
     background-color: rgb(var(--palette-50));
     border: solid 1px rgb(var(--palette-400));
-    border-radius: 10px;
+    border-radius: 0.75vh;
 }
 
 .embedContainer .bar {
     display: flex;
-    height: 20px;
-    margin: 5px 5px 0 5px;
-    border: solid 2px transparent;
-    border-radius: 5px;
+    height: 100%;
+    margin: 0.3vh 0.3vh 0 0.3vh;
+    border-radius: 0.5vh;
     background-color: rgb(var(--palette-300));
     transition: 0.3s background-color ease-in-out;
 }
 
 .embedContainer .active {
-    border: solid 2px rgb(var(--palette-700));
     background-color: rgb(var(--palette-500));
+}
+
+.arrayTabRunButtonsContainer {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin: 1vh 0;
+}
+
+.arrayTabRunButtonsContainer button {
+    margin: 1vh 0 0 0;
+}
+
+input[type="range"] {
+    display: flex !important;
+    /* Remove default background */
+    width: 100%;
+    /* Set desired width */
+    align-items: center;
+}
+
+input[type="range"]::-webkit-slider-runnable-track {
+    height: 8px;
+    /* Set track height */
+    background-color: rgb(var(--palette-300));
+    /* Set track color */
+    border-radius: 4px;
+    /* Rounded corners */
+}
+
+input[type="range"]::-webkit-slider-thumb {
+    width: 20px;
+    /* Set thumb width */
+    margin-top: -4px;
+    height: 20px;
+    /* Set thumb height */
+    background-color: rgb(var(--palette-500));
+    /* Set thumb color */
+    border-radius: 50%;
+    /* Round thumb */
+}
+
+input[type="range"]:focus::-webkit-slider-runnable-track {
+    background: rgb(var(--palette-200));
+    border: solid 1px rgb(var(--palette-600));
+    /* Change track color on focus */
+}
+
+#arrayElementsDisplay {
+    margin-left: 10px;
+}
+
+#runSelectedMethodBtn {
+    padding: 5px 10px;
+    margin-left: 5px;
+}
+
+#sortMethodSelection {
+    display: flex;
+    background-color: transparent;
+    color: rgb(var(--palette-100));
+    font-size: 18px;
+    font-weight: 400;
+    margin-left: 10px;
+    border: solid 1px rgb(var(--palette-400));
+    border-radius: 5px;
 }
