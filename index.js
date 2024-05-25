@@ -76,8 +76,8 @@ let deviceVersion;
 let latestVersion;
 checkVersion();
 function checkVersion() {
-  if (localStorage.getItem("version")) {
-    deviceVersion = localStorage.getItem("version");
+  if (localStorage.getItem("ARRversion")) {
+    deviceVersion = localStorage.getItem("ARRversion");
     latestVersion = document.getElementById("latestVersionDisplay").textContent;
     if (deviceVersion != latestVersion) {
       document.getElementById("prevVer").textContent = deviceVersion;
@@ -91,10 +91,10 @@ function checkVersion() {
     }
   }
   else {
-    localStorage.setItem('version', document.getElementById("latestVersionDisplay").textContent);
+    localStorage.setItem('ARRversion', document.getElementById("latestVersionDisplay").textContent);
   }
-  localStorage.setItem("version", latestVersion);
-  deviceVersion = localStorage.getItem("version");
+  localStorage.setItem("ARRversion", latestVersion);
+  deviceVersion = localStorage.getItem("ARRversion");
 }
 
 function closeUpdateNotice() {
