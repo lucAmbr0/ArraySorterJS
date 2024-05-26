@@ -166,6 +166,37 @@ input:focus {
     outline: none;
 }
 
+summary {
+    padding-left: 5px;
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+}
+
+summary span {
+    color: rgb(var(--palette-900)) !important;
+    transform: rotate(90deg);
+    transition: 0.2s transform ease-in-out;
+}
+
+details[open] summary span {
+    transform: rotate(180deg);
+}
+
+summary h2 {
+    margin: 0 0 0 8px;
+}
+
+details p {
+    margin-top: 10px;
+    padding: 10px;
+    background-color: rgb(var(--palette-950));
+    color: rgb(var(--palette-100));
+    border-radius: 10px;
+    font-family: monospace;
+    text-align: justify;
+}
+
 h1,
 h2,
 h3,
@@ -314,7 +345,7 @@ h1 {
 h2 {
     font-family: var(--HeadingFont);
     color: rgb(var(--palette-900));
-    margin: 0 0 15px 0;
+    margin: 0;
 }
 
 p {
@@ -732,7 +763,7 @@ label {
     width: 100%;
     margin-bottom: 2vh;
     overflow: hidden;
-    padding-bottom: 0.3vh;
+    padding: 0 0.3vh 0.3vh 0.3vh;
     background-color: rgb(var(--palette-50));
     border: solid 1px rgb(var(--palette-400));
     border-radius: 0.75vh;
@@ -742,7 +773,7 @@ label {
     display: flex;
     height: 100%;
     width: 0;
-    margin: 0.3vh 0.3vh 0 0.3vh;
+    margin: 0.3vh 0 0 0;
     border-radius: 0.5vh;
     background-color: rgb(var(--palette-300));
     transition: 0.25s width ease-in-out;

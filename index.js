@@ -215,8 +215,10 @@ function annoyGitCat() {
 }
 
 // ---------------  CHANGE NUMBER OF ELEMENTS  ---------------
+
 const rangeInput = document.getElementById('numOfElementsRange');
 const displayValue = document.getElementById('arrayElementsDisplay');
+const arrayContentDisplay = document.getElementById("arrayContentDisplay");
 let amountOfBars = rangeInput.value;
 
 function changeElementsAmount() {
@@ -243,21 +245,47 @@ let maxBarValue = 100;
 async function randomizeBars() {
   arr = [];
   bars = document.querySelectorAll(".bar");
+  arrayContentDisplay.textContent = "";
   for (let i = 0; i < amountOfBars; i++) {
     await delay(100 / amountOfBars);
     let randomNumber = Math.floor(Math.random() * (maxBarValue - minBarValue + 1) + minBarValue);
+    arrayContentDisplay.textContent += `${randomNumber} `;
     arr[i] = randomNumber;
     let percentage = ((randomNumber - minBarValue) / (maxBarValue - minBarValue)) * 100;
     if (percentage < 0.5) percentage == 0.5;
-    else if (percentage > 99) percentage = 99;
     bars[i].style.width = `${percentage}%`; // set the width of the bar
   }
+}
+
+const toggleSlowMoSwitch = document.getElementById("visualizeDelaySwitch"); // reference to the switch <input> item which actually is a checkbox type
+let slowMoState = "1";
+
+function findSlowMoStateAtLoad() {
+  if (localStorage.getItem('slowMoState')) {
+    slowMoState = localStorage.getItem('slowMoState');
+    if (slowMoState == "1") {
+      toggleSlowMoSwitch.checked = true;
+    }
+  }
+  else slowMoState = "0";
+  localStorage.setItem('slowMoState', slowMoState);
+}
+
+function toggleSlowMoSort() { // triggered when the switch is clicked
+  if (toggleSlowMoSwitch.checked) {
+    slowMoState = "1";
+  }
+  else if (!toggleSlowMoSwitch.checked) {
+    slowMoState = "0";
+  }
+  localStorage.setItem('slowMoState', slowMoState);
 }
 
 document.addEventListener("DOMContentLoaded", () => {
   setTimeout(() => {
     createBarsOnAppLoad();
     checkSelectedMethodOnAppLoad();
+    findSlowMoStateAtLoad();
   }, 10);
 });
 function createBarsOnAppLoad() {
@@ -269,8 +297,10 @@ function createBarsOnAppLoad() {
   setBarQuantity(amountOfBars);
 }
 
-function delay(ms) {
-  return new Promise(resolve => setTimeout(resolve, ms));
+function delay(ms, ignoreOption) {
+  if (slowMoState == "0" && !ignoreOption) return;
+  else
+    return new Promise(resolve => setTimeout(resolve, ms));
 }
 
 const sortMethodSelection = document.getElementById("sortMethodSelection");
@@ -308,21 +338,22 @@ let selMemAccesses = 0;
 let selSwaps = 0;
 let totMemAccesses = 0;
 let totSwaps = 0;
+let checkIfSortedTimes = 0;
+let time = 0;
+let executionTime = 0;
+let totalTime = 0;
 
 async function showChanges(idx1, idx2) {
   bars = document.querySelectorAll(".bar");
-  let tmpWidth = 0;
   bars[idx2].classList.add("active");
   await delay(300 / amountOfBars);
   bars[idx1].classList.add("active");
-  tmpWidth = bars[idx1].style.width;
-  bars[idx1].style.width = bars[idx2].style.width;
-  bars[idx2].style.width = tmpWidth;
   bars[idx1].classList.remove("active");
   bars[idx2].classList.remove("active");
 }
 
 function checkIfSorted(inAscending) {
+  checkIfSortedTimes++;
   for (let i = 0; i < arr.length - 1; i++) {
     selMemAccesses++;
     if (inAscending && arr[i] > arr[i + 1]) {
@@ -341,23 +372,72 @@ async function bubbleSort() {
   let tmp = 0;
   selSwaps = 0;
   selMemAccesses = 0;
-  while (!checkIfSorted(true)) {
+  checkIfSortedTimes = 0;
+  time = 0
+  let sortingTime = 0;
+  const startTime = performance.now(); // Record start time in microseconds
+  do {
+    let sortingStartTime = performance.now(); // Record start time for sorting phase
     for (let i = 0; i < arr.length - 1; i++) {
       selMemAccesses++;
-      showChanges(i, i + 1);
-      await delay(300 / amountOfBars);
       if (arr[i] > arr[i + 1]) {
         tmp = arr[i];
         arr[i] = arr[i + 1];
         arr[i + 1] = tmp;
         selSwaps++;
-      }
-      for (let j = 0; j < arr.length; j++) {
-        bars[j].style.width = `${((arr[j] - minBarValue) / (maxBarValue - minBarValue)) * 100}%`; // set the width of the bar)
+        let sortingEndTime = performance.now(); // Record end time for sorting phase
+        sortingTime = (sortingEndTime - sortingStartTime);
+        time += sortingTime; // Accumulate sorting phase time
+        showChanges(i, i + 1);
+        // Add a delay for visualization purposes (if needed)
+        await delay(300 / amountOfBars); // Adjust the delay time as needed
       }
     }
+
+    // Visualize the changes after each complete pass
+    arrayContentDisplay.textContent = "";
+    for (let j = 0; j < arr.length; j++) {
+      let percentage = ((arr[j] - minBarValue) / (maxBarValue - minBarValue)) * 100;
+      if (percentage < 0.5) percentage = 0.5;
+      bars[j].style.width = percentage + "%"; // set the width of the bar
+      arrayContentDisplay.textContent += `${arr[j]} `;
+    }
+
+  } while (!checkIfSorted(true));
+
+  const endTime = performance.now(); // Record end time in microseconds
+  totalTime = (endTime - startTime) / 1000;
+  executionTime = time / 1000000;
+
+  for (let j = 0; j < arr.length; j++) {
+    bars[j].classList.add("active");
+    await delay(500 / amountOfBars);
   }
-  bars.forEach(bar => bar.style.transition = "0.25s width ease-in-out");
+  bars.forEach(bar => {
+    bar.style.transition = "0.25s width ease-in-out"
+  });
+  makeSingleReport("Bubble sort");
+  await delay(1000, true);
+  bars.forEach(bar =>
+    bar.classList.remove("active"));
+}
+
+
+function makeSingleReport(sortMethod) {
+  const sortMethodDisplay = document.getElementById("sort_method_display");
+  const numElementsDisplay = document.getElementById("num_elements");
+  const rangeValuesDisplay = document.getElementById("range_values");
+  const calcTimeDisplay = document.getElementById("calc_time");
+  const totalTimeDisplay = document.getElementById("total_time");
+  const memoryAccessesDisplay = document.getElementById("memory_accesses");
+  const swapsDisplay = document.getElementById("swaps");
+  sortMethodDisplay.textContent = sortMethod;
+  numElementsDisplay.textContent = amountOfBars;
+  rangeValuesDisplay.textContent = `${minBarValue}-${maxBarValue}`
+  calcTimeDisplay.textContent = `${executionTime.toFixed(5)} ms`; // Update calcTimeDisplay
+  totalTimeDisplay.textContent = `${totalTime.toFixed(3)} sec`; // Update totalTimeDisplay
+  memoryAccessesDisplay.textContent = selMemAccesses;
+  swapsDisplay.textContent = selSwaps;
 }
 
 function runSelected() {
