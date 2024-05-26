@@ -763,7 +763,7 @@ label {
     width: 100%;
     margin-bottom: 2vh;
     overflow: hidden;
-    padding: 0 0.3vh 0.3vh 0.3vh;
+    padding: 0.3vh;
     background-color: rgb(var(--palette-50));
     border: solid 1px rgb(var(--palette-400));
     border-radius: 0.75vh;
@@ -773,8 +773,8 @@ label {
     display: flex;
     height: 100%;
     width: 0;
-    margin: 0.3vh 0 0 0;
-    border-radius: 0.5vh;
+    margin: 0vh 0 0 0;
+    border-radius: 0 5px 5px 0;
     background-color: rgb(var(--palette-300));
     transition: 0.25s width ease-in-out;
 }
