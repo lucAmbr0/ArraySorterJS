@@ -242,7 +242,7 @@ let maxBarValue = 100;
 async function randomizeBars() {
   bars = document.querySelectorAll(".bar");
   for (let i = 0; i < amountOfBars; i++) {
-    await delay(100/amountOfBars);
+    await delay(100 / amountOfBars);
     let randomNumber = Math.random() * (maxBarValue - minBarValue + 1) + minBarValue;
     let percentage = ((randomNumber - minBarValue) / (maxBarValue - minBarValue)) * 100;
     if (percentage < 0.5) percentage == 0.5;
@@ -252,9 +252,9 @@ async function randomizeBars() {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-  console.log("A");
   setTimeout(() => {
     createBarsOnAppLoad();
+    checkSelectedMethodOnAppLoad();
   }, 10);
 });
 function createBarsOnAppLoad() {
@@ -268,4 +268,43 @@ function createBarsOnAppLoad() {
 
 function delay(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+const sortMethodSelection = document.getElementById("sortMethodSelection");
+const runSelectedMethodBtn = document.getElementById("runSelectedMethodBtn");
+let selectedSortMethod = 0;
+
+function checkSelectedMethodOnAppLoad() {
+  if (!localStorage.getItem("selectedSortMethod"))
+    localStorage.setItem("selectedSortMethod", 0);
+  selectedSortMethod = parseInt(localStorage.getItem("selectedSortMethod"));
+  sortMethodSelection.value = selectedSortMethod;
+  console.log("AA");
+}
+
+sortMethodSelection.addEventListener("change", (e) => {
+  e.stopPropagation();
+  selectedSortMethod = sortMethodSelection.value;
+  localStorage.setItem("selectedSortMethod", selectedSortMethod);
+});
+
+// Stop event propagation when clicking on the select element
+sortMethodSelection.addEventListener("click", (e) => {
+  e.stopPropagation();
+});
+
+runSelectedMethodBtn.addEventListener("click", (e) => {
+  // Check if the click was directly on the select element, if so do nothing
+  if (e.target === sortMethodSelection) {
+    return;
+  }
+  runSelected();
+});
+
+function runSelected() {
+  console.log("RUN");
+}
+
+function bubbleSort() {
+
 }

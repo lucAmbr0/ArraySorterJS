@@ -97,10 +97,10 @@
           </span>
             Run
             <select name="SortMethod" id="sortMethodSelection">
-              <option value="bubbleSort">Bubble Sort</option>
-              <option value="selectionSort">Selection Sort</option>
-              <option value="insertionSort">Insertion Sort</option>
-              <option value="bogoSort">Bogo Sort</option>
+              <option value="0">Bubble Sort</option>
+              <option value="1">Selection Sort</option>
+              <option value="2">Insertion Sort</option>
+              <option value="3">Bogo Sort</option>
             </select>
           </button>
           <button class="buttonOutline" onclick="randomizeBars()">
@@ -221,7 +221,7 @@
     </div>
     <nav id="navbar">
       <div class="navbarBtn" onclick="navbarAction(0)">
-        <span class="material-symbols-outlined navbarIcon"> visibility </span>
+        <span class="material-symbols-outlined navbarIcon"> fast_forward </span>
         <p class="navbarLabel navbarLabelActive">Simulate</p>
       </div>
       <div class="navbarBtn" onclick="navbarAction(1)">
