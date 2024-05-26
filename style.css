@@ -745,11 +745,11 @@ label {
     margin: 0.3vh 0.3vh 0 0.3vh;
     border-radius: 0.5vh;
     background-color: rgb(var(--palette-300));
-    transition: 0.25s all ease-in-out;
+    transition: 0.25s width ease-in-out;
 }
 
 .embedContainer .active {
-    background-color: rgb(var(--palette-500));
+    background-color: rgb(var(--palette-700));
 }
 
 .arrayTabRunButtonsContainer {
