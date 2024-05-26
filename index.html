@@ -63,15 +63,15 @@
         <div class="embedContainer" id="barsBarContainer">
         </div>
         <div class="switch-container">
-          <div class="switch-label">Slow-motion sort</div>
+          <div class="switch-label">Delay to visualize</div>
           <div class="switch">
             <input
               type="checkbox"
-              id="visualizeDelay"
+              id="visualizeDelaySwitch"
               class="switch-input"
               onchange="toggleSlowMoSort()"
             />
-            <label for="visualizeDelay" class="switch-toggle"></label>
+            <label for="visualizeDelaySwitch" class="switch-toggle"></label>
           </div>
           <div class="switch-label">Array elements</div>
           <div style="display: flex;">
@@ -115,27 +115,30 @@
           <table class="simulationResultsContainer">
             <tbody>
               <tr>
+                <td>Sorting method</td>
+                <td id="sort_method_display"></td> </tr>
+              <tr>
                 <td>Number of elements</td>
-                <td id="num_elements">100</td> </tr>
+                <td id="num_elements"></td> </tr>
               <tr>
                 <td>Range of values</td>
-                <td id="range_values">0-1.000.000</td>
+                <td id="range_values"></td>
               </tr>
               <tr>
-                <td>Time (sec)</td>
-                <td id="time_sec">0.03s</td>
+                <td>Calculus time</td>
+                <td id="calc_time"></td>
               </tr>
               <tr>
-                <td>Time total (s)</td>
-                <td id="time_total">2.12s</td>
+                <td>Total time(s)</td>
+                <td id="total_time"></td>
               </tr>
               <tr>
                 <td>Memory accesses</td>
-                <td id="memory_accesses">2340</td>
+                <td id="memory_accesses"></td>
               </tr>
               <tr>
                 <td>Swaps</td>
-                <td id="swaps">1750</td>
+                <td id="swaps"></td>
               </tr>
             </tbody>
           </table>
