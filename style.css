@@ -227,10 +227,25 @@ h5 {
 
 /* ---------------  ANIMATIONS --------------- */
 
+@keyframes appTabs {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
 
-
-
-
+@keyframes barCreation {
+    from {
+        transform: translateX(-80vw);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
 
 /* ---------------  ALL RULES  --------------- */
 
@@ -680,21 +695,16 @@ label {
 
 #arrayTab {
     overflow-y: hidden;
-    padding: 1vh;
-}
-
-#arrayTabCard {
-    height: 83vh;
-    padding: 1vh;
+    padding: 2vh;
 }
 
 #arrayCardTitle {
-    margin: 1vh;
+    margin: 1vh 0;
     font-size: 3.5vh;
 }
 
 #barsBarContainer {
-    height: 52vh;
+    height: 60vh;
 }
 
 .embedContainer h2 {
@@ -738,10 +748,12 @@ label {
 .embedContainer .bar {
     display: flex;
     height: 100%;
+    width: 0;
     margin: 0.3vh 0.3vh 0 0.3vh;
     border-radius: 0.5vh;
     background-color: rgb(var(--palette-300));
-    transition: 0.3s background-color ease-in-out;
+    transition: 0.25s all ease-in-out;
+    animation: barCreation 0.3s ease-in-out;
 }
 
 .embedContainer .active {

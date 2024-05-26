@@ -238,18 +238,31 @@ function setBarQuantity(qta) {
 let minBarValue = 0;
 let maxBarValue = 100;
 
-function randomizeBars() {
+async function randomizeBars() {
   bars = document.querySelectorAll(".bar");
-  bars.forEach((bar) => {
-    const width = (Math.floor(Math.random() * (maxBarValue - minBarValue)) + minBarValue); // generate a random width between 1 and 100
-    bar.style.width = `${width}%`; // set the width of the bar
-  });
+  for (let i = 0; i < amountOfBars; i++) {
+    await delay(300/amountOfBars);
+    let randomNumber = Math.random() * (maxBarValue - minBarValue + 1) + minBarValue;
+    let percentage = ((randomNumber - minBarValue) / (maxBarValue - minBarValue)) * 100;
+    if (percentage < 0.5) percentage == 0.5;
+    else if (percentage > 99) percentage = 99;
+    bars[i].style.width = `${percentage}%`; // set the width of the bar
+  }
 }
 
-createBarsOnAppLoad();
+document.addEventListener("DOMContentLoaded", () => {
+  console.log("A");
+  setTimeout(() => {
+    createBarsOnAppLoad();
+  }, 10);
+});
 function createBarsOnAppLoad() {
   if (!localStorage.getItem("barsAmount"))
-  localStorage.setItem("barsAmount", 47);
-  amountOfBars = localStorage.getItem("barsAmount");
+    localStorage.setItem("barsAmount", 47);
+  amountOfBars = parseInt(localStorage.getItem("barsAmount"));
   setBarQuantity(amountOfBars);
+}
+
+function delay(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
 }
