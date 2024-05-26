@@ -189,11 +189,10 @@ function annoyGitCat() {
     document.getElementById("socialIcon").style.transition = "2s all ease-in-out";
     document.getElementById("socialIcon").style.transform = "translateY(-100vh)";
     setTimeout(() => {
-      document.getElementById("nowTab").style.display = "none";
-      document.getElementById("timetablesTab").style.display = "none";
-      document.getElementById("settingsTab").style.display = "none";
+      document.getElementById("arrayTab").style.display = "none";
+      document.getElementById("resultsTab").style.display = "none";
+      document.getElementById("customizeTab").style.display = "none";
       document.getElementById("navbar").style.display = "none";
-      document.querySelector(".topNotchContainer").style.display = "none";
       setTimeout(() => {
         var div = document.createElement('div');
         // Create div
@@ -231,20 +230,26 @@ let barContainer = document.getElementById("barsBarContainer");
 
 function setBarQuantity(qta) {
   barContainer.innerHTML = ``;
-  for (let i = 0; i < qta; i++) {
+  for (let i = 0; i < qta; i++)
     barContainer.innerHTML += `<div class="bar"></div>`;
-  }
   randomizeBars();
 }
 
 let minBarValue = 0;
 let maxBarValue = 100;
 
-randomizeBars();
 function randomizeBars() {
   bars = document.querySelectorAll(".bar");
   bars.forEach((bar) => {
     const width = (Math.floor(Math.random() * (maxBarValue - minBarValue)) + minBarValue); // generate a random width between 1 and 100
     bar.style.width = `${width}%`; // set the width of the bar
   });
+}
+
+createBarsOnAppLoad();
+function createBarsOnAppLoad() {
+  if (!localStorage.getItem("barsAmount"))
+  localStorage.setItem("barsAmount", 47);
+  amountOfBars = localStorage.getItem("barsAmount");
+  setBarQuantity(amountOfBars);
 }

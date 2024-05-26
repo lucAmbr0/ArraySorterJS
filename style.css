@@ -301,19 +301,19 @@ h5 {
     padding: 10px;
 }
 
-.card h1 {
+h1 {
     font-family: var(--HeadingFont);
     color: rgb(var(--palette-950));
     margin: 0 0 5px 5px;
 }
 
-.card h2 {
+h2 {
     font-family: var(--HeadingFont);
     color: rgb(var(--palette-900));
     margin: 0 0 15px 0;
 }
 
-.card p {
+p {
     font-family: var(--StandardTextFont);
     color: rgb(var(--palette-800));
     margin: 0;
@@ -680,6 +680,7 @@ label {
 
 #arrayTab {
     overflow-y: hidden;
+    padding: 1vh;
 }
 
 #arrayTabCard {
