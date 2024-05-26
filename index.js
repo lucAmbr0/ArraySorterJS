@@ -242,7 +242,7 @@ let maxBarValue = 100;
 async function randomizeBars() {
   bars = document.querySelectorAll(".bar");
   for (let i = 0; i < amountOfBars; i++) {
-    await delay(200/amountOfBars);
+    await delay(100/amountOfBars);
     let randomNumber = Math.random() * (maxBarValue - minBarValue + 1) + minBarValue;
     let percentage = ((randomNumber - minBarValue) / (maxBarValue - minBarValue)) * 100;
     if (percentage < 0.5) percentage == 0.5;
@@ -259,7 +259,7 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 function createBarsOnAppLoad() {
   if (!localStorage.getItem("barsAmount"))
-    localStorage.setItem("barsAmount", 47);
+    localStorage.setItem("barsAmount", 25);
   amountOfBars = parseInt(localStorage.getItem("barsAmount"));
   rangeInput.value = amountOfBars;
   displayValue.textContent = rangeInput.value;

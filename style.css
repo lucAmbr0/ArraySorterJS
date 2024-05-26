@@ -236,17 +236,6 @@ h5 {
     }
 }
 
-@keyframes barCreation {
-    from {
-        transform: translateX(-80vw);
-        opacity: 0;
-    }
-    to {
-        transform: translateX(0);
-        opacity: 1;
-    }
-}
-
 /* ---------------  ALL RULES  --------------- */
 
 #newVersionBox {
@@ -431,6 +420,10 @@ button.buttonOutline:active {
 
 .material-symbols-outlined {
     color: rgb(var(--palette-950));
+}
+
+.appTabs {
+    animation: appTabs 0.1s ease-in-out;
 }
 
 .appTabsShown {
