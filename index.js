@@ -218,6 +218,7 @@ function annoyGitCat() {
 
 const rangeInput = document.getElementById('numOfElementsRange');
 const displayValue = document.getElementById('arrayElementsDisplay');
+const arrayContentDisplay = document.getElementById("arrayContentDisplay");
 let amountOfBars = rangeInput.value;
 
 function changeElementsAmount() {
@@ -244,9 +245,11 @@ let maxBarValue = 100;
 async function randomizeBars() {
   arr = [];
   bars = document.querySelectorAll(".bar");
+  arrayContentDisplay.textContent = "";
   for (let i = 0; i < amountOfBars; i++) {
     await delay(100 / amountOfBars);
     let randomNumber = Math.floor(Math.random() * (maxBarValue - minBarValue + 1) + minBarValue);
+    arrayContentDisplay.textContent += `${randomNumber} `;
     arr[i] = randomNumber;
     let percentage = ((randomNumber - minBarValue) / (maxBarValue - minBarValue)) * 100;
     if (percentage < 0.5) percentage == 0.5;
@@ -392,10 +395,12 @@ async function bubbleSort() {
     }
 
     // Visualize the changes after each complete pass
+    arrayContentDisplay.textContent = "";
     for (let j = 0; j < arr.length; j++) {
       let percentage = ((arr[j] - minBarValue) / (maxBarValue - minBarValue)) * 100;
       if (percentage < 0.5) percentage = 0.5;
       bars[j].style.width = percentage + "%"; // set the width of the bar
+      arrayContentDisplay.textContent += `${arr[j]} `;
     }
 
   } while (!checkIfSorted(true));

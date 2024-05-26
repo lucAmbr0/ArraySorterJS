@@ -166,6 +166,37 @@ input:focus {
     outline: none;
 }
 
+summary {
+    padding-left: 5px;
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+}
+
+summary span {
+    color: rgb(var(--palette-900)) !important;
+    transform: rotate(90deg);
+    transition: 0.2s transform ease-in-out;
+}
+
+details[open] summary span {
+    transform: rotate(180deg);
+}
+
+summary h2 {
+    margin: 0 0 0 8px;
+}
+
+details p {
+    margin-top: 10px;
+    padding: 10px;
+    background-color: rgb(var(--palette-950));
+    color: rgb(var(--palette-100));
+    border-radius: 10px;
+    font-family: monospace;
+    text-align: justify;
+}
+
 h1,
 h2,
 h3,
@@ -314,7 +345,7 @@ h1 {
 h2 {
     font-family: var(--HeadingFont);
     color: rgb(var(--palette-900));
-    margin: 0 0 15px 0;
+    margin: 0;
 }
 
 p {
