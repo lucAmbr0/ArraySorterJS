@@ -247,7 +247,7 @@ async function randomizeBars() {
   bars = document.querySelectorAll(".bar");
   arrayContentDisplay.textContent = "";
   for (let i = 0; i < amountOfBars; i++) {
-    await delay(100 / amountOfBars);
+    await delay(10 / amountOfBars);
     let randomNumber = Math.floor(Math.random() * (maxBarValue - minBarValue + 1) + minBarValue);
     arrayContentDisplay.textContent += `${randomNumber} `;
     arr[i] = randomNumber;
@@ -448,4 +448,26 @@ function runSelected() {
     default:
       break;
   }
+}
+
+function copyArrayContent() {
+  // Convert array to JSON string
+  const arrayString = JSON.stringify(arr);
+
+  // Create a temporary textarea element to hold the string
+  const textarea = document.createElement("textarea");
+  textarea.value = arrayString;
+  document.body.appendChild(textarea);
+
+  // Select the text inside the textarea
+  textarea.select();
+  textarea.setSelectionRange(0, arrayString.length);
+
+  // Copy the selected text to the clipboard
+  document.execCommand("copy");
+
+  // Remove the temporary textarea element
+  document.body.removeChild(textarea);
+
+  window.alert("Copied array to your clipboard");
 }
