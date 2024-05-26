@@ -753,7 +753,6 @@ label {
     border-radius: 0.5vh;
     background-color: rgb(var(--palette-300));
     transition: 0.25s all ease-in-out;
-    animation: barCreation 0.3s ease-in-out;
 }
 
 .embedContainer .active {
