@@ -188,11 +188,8 @@ summary h2 {
 }
 
 details p {
-    margin-top: 10px;
-    padding: 10px;
     background-color: rgb(var(--palette-950));
     color: rgb(var(--palette-100));
-    border-radius: 10px;
     font-family: monospace;
     text-align: justify;
 }
@@ -512,7 +509,7 @@ button.buttonOutline:active {
     height: fit-content;
     display: flex;
     flex-direction: column;
-    margin: 0px auto 15px auto;
+    margin: 20px auto 15px auto;
     padding: 5px 0;
     border: solid 2px rgb(var(--palette-400));
     background-color: rgb(var(--palette-100));
@@ -543,6 +540,7 @@ button.buttonOutline:active {
 .appInfoBox {
     grid-template-columns: 2fr 3fr;
     text-align: right;
+    margin: 0 10px;
 }
 
 #appFooterContainer {
@@ -718,7 +716,7 @@ label {
 }
 
 #arrayTab {
-    overflow-y: hidden;
+    overflow: hidden;
     padding: 2vh;
 }
 
@@ -760,10 +758,9 @@ label {
 .embedContainer {
     display: flex;
     flex-direction: column;
-    width: 100%;
     margin-bottom: 2vh;
     overflow: hidden;
-    padding: 0 0.3vh 0.3vh 0.3vh;
+    padding: 0.3vh;
     background-color: rgb(var(--palette-50));
     border: solid 1px rgb(var(--palette-400));
     border-radius: 0.75vh;
@@ -773,8 +770,8 @@ label {
     display: flex;
     height: 100%;
     width: 0;
-    margin: 0.3vh 0 0 0;
-    border-radius: 0.5vh;
+    margin: 0vh 0 0 0;
+    border-radius: 0;
     background-color: rgb(var(--palette-300));
     transition: 0.25s width ease-in-out;
 }
@@ -847,4 +844,19 @@ input[type="range"]:focus::-webkit-slider-runnable-track {
     margin-left: 10px;
     border: solid 1px rgb(var(--palette-400));
     border-radius: 5px;
+}
+
+.arrayValuesContainer {
+    margin-top: 10px;
+    padding: 10px;
+    background-color: rgb(var(--palette-950));
+    color: rgb(var(--palette-100));
+    border-radius: 10px;
+    font-family: monospace;
+    text-align: justify;    
+}
+
+.arrayValuesContainer button {
+    margin: 10px 0 0 auto;
+    border-radius: 10px;
 }
