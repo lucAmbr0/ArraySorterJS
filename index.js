@@ -189,11 +189,10 @@ function annoyGitCat() {
     document.getElementById("socialIcon").style.transition = "2s all ease-in-out";
     document.getElementById("socialIcon").style.transform = "translateY(-100vh)";
     setTimeout(() => {
-      document.getElementById("nowTab").style.display = "none";
-      document.getElementById("timetablesTab").style.display = "none";
-      document.getElementById("settingsTab").style.display = "none";
+      document.getElementById("arrayTab").style.display = "none";
+      document.getElementById("resultsTab").style.display = "none";
+      document.getElementById("customizeTab").style.display = "none";
       document.getElementById("navbar").style.display = "none";
-      document.querySelector(".topNotchContainer").style.display = "none";
       setTimeout(() => {
         var div = document.createElement('div');
         // Create div
@@ -223,6 +222,7 @@ let amountOfBars = rangeInput.value;
 function changeElementsAmount() {
   displayValue.textContent = rangeInput.value;
   amountOfBars = rangeInput.value;
+  localStorage.setItem("barsAmount", amountOfBars);
   setBarQuantity(amountOfBars)
 }
 
@@ -231,20 +231,41 @@ let barContainer = document.getElementById("barsBarContainer");
 
 function setBarQuantity(qta) {
   barContainer.innerHTML = ``;
-  for (let i = 0; i < qta; i++) {
+  for (let i = 0; i < qta; i++)
     barContainer.innerHTML += `<div class="bar"></div>`;
-  }
   randomizeBars();
 }
 
 let minBarValue = 0;
 let maxBarValue = 100;
 
-randomizeBars();
-function randomizeBars() {
+async function randomizeBars() {
   bars = document.querySelectorAll(".bar");
-  bars.forEach((bar) => {
-    const width = (Math.floor(Math.random() * (maxBarValue - minBarValue)) + minBarValue); // generate a random width between 1 and 100
-    bar.style.width = `${width}%`; // set the width of the bar
-  });
+  for (let i = 0; i < amountOfBars; i++) {
+    await delay(200/amountOfBars);
+    let randomNumber = Math.random() * (maxBarValue - minBarValue + 1) + minBarValue;
+    let percentage = ((randomNumber - minBarValue) / (maxBarValue - minBarValue)) * 100;
+    if (percentage < 0.5) percentage == 0.5;
+    else if (percentage > 99) percentage = 99;
+    bars[i].style.width = `${percentage}%`; // set the width of the bar
+  }
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  console.log("A");
+  setTimeout(() => {
+    createBarsOnAppLoad();
+  }, 10);
+});
+function createBarsOnAppLoad() {
+  if (!localStorage.getItem("barsAmount"))
+    localStorage.setItem("barsAmount", 47);
+  amountOfBars = parseInt(localStorage.getItem("barsAmount"));
+  rangeInput.value = amountOfBars;
+  displayValue.textContent = rangeInput.value;
+  setBarQuantity(amountOfBars);
+}
+
+function delay(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
 }
