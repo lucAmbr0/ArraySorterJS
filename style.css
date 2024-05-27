@@ -716,18 +716,23 @@ label {
     transform: translateX(25px);
 }
 
-#arrayTab {
+#arrayTab, #resultsTab {
     overflow: hidden;
     padding: 2vh;
 }
 
-#arrayCardTitle {
-    margin: 1vh 0;
+.arrayCardTitle {
+    margin: 0;
     font-size: 3.5vh;
+    border: solid 1px rgb(var(--palette-400));
+    border-bottom: none;
+    padding: 10px;
+    border-radius: 2vh 2vh 0 0;
+    background-color: rgb(var(--palette-200));
 }
 
 #barsBarContainer {
-    height: 60vh;
+    height: 50vh;
 }
 
 .embedContainer h2 {
@@ -739,16 +744,12 @@ label {
     margin: 1vh;
 }
 
-#simulationResultsTitle {
-    margin: 1vh 0.5vh;
-}
-
 .simulationResultsContainer {
     border: solid 1px rgb(var(--palette-400));
     background-color: rgb(var(--palette-50));
-    padding: 0.5vh;
+    padding: 0.5vh 1vh;
     width: 100%;
-    border-radius: 10px;
+    border-radius: 0 0 2vh 2vh;
 }
 
 .simulationResultsContainer tbody {
@@ -761,10 +762,10 @@ label {
     flex-direction: column;
     margin-bottom: 2vh;
     overflow: hidden;
-    padding: 0.3vh;
     background-color: rgb(var(--palette-50));
     border: solid 1px rgb(var(--palette-400));
-    border-radius: 0.75vh;
+    border-radius:  0 0 0.75vh 0.75vh;
+    padding: 0 !important;
 }
 
 .embedContainer .bar {
@@ -774,7 +775,11 @@ label {
     margin: 0vh 0 0 0;
     border-radius: 0;
     background-color: rgb(var(--palette-300));
-    transition: 0.25s width ease-in-out;
+    transition: 0.25s all ease-in-out;
+}
+
+.barNoAnimation {
+    transition: 0s !important;
 }
 
 .embedContainer .active {
@@ -862,11 +867,29 @@ input[type="range"]:focus::-webkit-slider-runnable-track {
     border-radius: 10px;
 }
 
-#expandArrayView {
+#expandArrayView, #rotateArrayView, #saveArrayView {
     display: flex;
     position: absolute;
     margin-top: .5vh;
     right: 2.5vh;
+    transition: 0.3s all ease-in-out;
+    color: rgb(var(--palette-800));
+}
+
+#expandArrayView:active, #rotateArrayView:active, #saveArrayView:active {
+    color: rgb(var(--palette-950));
+    scale: 1.3;
+}
+    
+#rotateArrayView {
+    margin-right: 30px;
+}
+
+#saveArrayView {
+    margin-right: 57px;
+    margin-top: .2vh;
+    font-size: 30px;
+    opacity: 1;
 }
 
 .expandedArrayView {
@@ -878,4 +901,9 @@ input[type="range"]:focus::-webkit-slider-runnable-track {
     z-index: 1 !important;
     margin-bottom: 0 !important;
     padding: 0 !important;
+}
+
+.verticalBarsContainer {
+    flex-direction: row !important;
+    align-items: flex-end;
 }

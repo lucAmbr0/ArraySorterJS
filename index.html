@@ -59,15 +59,17 @@
       </button>
     </div>
     <div class="appTabs" id="arrayTab">
-        <h1 id="arrayCardTitle">Array Elements</h1>
-        <span class="material-symbols-outlined" id="expandArrayView" onclick="setFullScreen(true)">
-          fullscreen
-          </span>
+      <h1 class="arrayCardTitle">Array Elements</h1>
+      <div id="simulationButtonsContainer">
+        <span class="material-symbols-outlined" id="expandArrayView" onclick="setFullScreen(true)">fullscreen</span>
+        <span class="material-symbols-outlined" id="rotateArrayView" onclick="changeRotateArray()">screen_rotation</span>
+        <span class="material-symbols-outlined" id="saveArrayView" onclick="saveArrayImage()">download</span>
+      </div>
         <div class="embedContainer" id="barsBarContainer" onclick="setFullScreen(false)">
         </div>
         <div class="switch-container">
-          <div class="switch-label">Delay to visualize</div>
-          <div class="switch">
+          <div class="switch-label" id="delayToVisualizeLabel">Delay to visualize</div>
+          <div class="switch" id="delayToVisualizeOpSwitch">
             <input
               type="checkbox"
               id="visualizeDelaySwitch"
@@ -83,11 +85,11 @@
             id="numOfElementsRange"
             class="switch-input range-input"
             onchange="changeElementsAmount()"
-            min="5"
-            max="500"
-            placeholder="30"
+            min="0"
+            max="100"
+            placeholder="12"
           >
-            <p id="arrayElementsDisplay">47</p>
+            <p id="arrayElementsDisplay">25</p>
           </div>
       </div>
       <div class="arrayTabRunButtonsContainer">
@@ -113,8 +115,7 @@
         </div>
     </div>
     <div class="appTabs" id="resultsTab">
-      <div class="card">
-      <h1 id="arrayCardTitle">Simulation Results</h2>
+      <h1 class="arrayCardTitle">Simulation Results</h2>
           <table class="simulationResultsContainer">
             <tbody>
               <tr>
@@ -126,6 +127,18 @@
               <tr>
                 <td>Range of values</td>
                 <td id="range_values"></td>
+              </tr>
+              <tr>
+                <td>Average expected</td>
+                <td id="average_expected"></td>
+              </tr>
+              <tr>
+                <td>Average values</td>
+                <td id="average_values"></td>
+              </tr>
+              <tr>
+                <td>Tolerance</td>
+                <td id="average_tolerance"></td>
               </tr>
               <tr>
                 <td>Calculation time</td>
@@ -162,7 +175,6 @@
                 </button>
               </div>
           </details>
-        </div>
       <!-- <div class="card">
         <h1>Customize Tab</h1>
         <h2>Tab n.2</h2>
