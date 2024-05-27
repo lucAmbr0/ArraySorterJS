@@ -60,7 +60,10 @@
     </div>
     <div class="appTabs" id="arrayTab">
         <h1 id="arrayCardTitle">Array Elements</h1>
-        <div class="embedContainer" id="barsBarContainer">
+        <span class="material-symbols-outlined" id="expandArrayView" onclick="setFullScreen(true)">
+          fullscreen
+          </span>
+        <div class="embedContainer" id="barsBarContainer" onclick="setFullScreen(false)">
         </div>
         <div class="switch-container">
           <div class="switch-label">Delay to visualize</div>
@@ -125,7 +128,7 @@
                 <td id="range_values"></td>
               </tr>
               <tr>
-                <td>Calculus time</td>
+                <td>Calculation time</td>
                 <td id="calc_time"></td>
               </tr>
               <tr>
@@ -196,7 +199,7 @@
           <label class="alignToRight">Array Sorter</label>
           <label class="switch-label">App version</label>
           <label class="alignToRight" id="latestVersionDisplay"
-            >1.11.35</label
+            >1.12.38</label
           >
           <label class="switch-label">License</label>
           <label class="alignToRight">
