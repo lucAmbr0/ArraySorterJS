@@ -214,6 +214,27 @@ function annoyGitCat() {
   }
 }
 
+// ---------------  BASIC GUI FUNCTIONS  ---------------
+
+function updateGraph() {
+  for (let i = 0; i < arr.length; i++)
+    setBarWidth(i, isVerticalState, ((arr[i] - minBarValue) / (maxBarValue - minBarValue)) * 100);
+}
+
+let isVerticalState = false;
+
+function setBarWidth(idx, isVertical, widthPercentage) {
+  bars = document.querySelectorAll(".bar");
+  if (isVertical) {
+    bars[idx].style.height = widthPercentage + "%";
+    bars[idx].style.width = "100%";
+  }
+  else {
+    bars[idx].style.height = "100%";
+    bars[idx].style.width = widthPercentage + "%";
+  }
+}
+
 // ---------------  CHANGE NUMBER OF ELEMENTS  ---------------
 
 const rangeInput = document.getElementById('numOfElementsRange');
@@ -221,9 +242,47 @@ const displayValue = document.getElementById('arrayElementsDisplay');
 const arrayContentDisplay = document.getElementById("arrayContentDisplay");
 let amountOfBars = rangeInput.value;
 
+// Function to map the slider value to the desired output value
+function mapSliderValue(value) {
+  // Map the slider's value (0-100) to the desired output (0, 20, 100, 500, 1000)
+  if (value <= 10) {
+    return 5 + (value / 10) * 15; // 5 to 20
+  } else if (value <= 25) {
+    return 21 + ((value - 10) / 15) * 49; // 21 to 70
+  } else if (value <= 40) {
+    return 71 + ((value - 25) / 15) * 49; // 71 to 120
+  } else if (value <= 60) {
+    return 121 + ((value - 40) / 20) * 129; // 121 to 250
+  } else if (value <= 80) {
+    return 251 + ((value - 60) / 20) * 299; // 251 to 550
+  } else {
+    return 551 + ((value - 80) / 20) * 449; // 551 to 1000
+  }
+}
+
+// Reverse mapping function
+function reverseMapSliderValue(mappedValue) {
+  if (mappedValue <= 20) {
+    return ((mappedValue - 5) / 15) * 10; // 5 to 20
+  } else if (mappedValue <= 70) {
+    return 10 + ((mappedValue - 21) / 49) * 15; // 21 to 70
+  } else if (mappedValue <= 120) {
+    return 25 + ((mappedValue - 71) / 49) * 15; // 71 to 120
+  } else if (mappedValue <= 250) {
+    return 40 + ((mappedValue - 121) / 129) * 20; // 121 to 250
+  } else if (mappedValue <= 550) {
+    return 60 + ((mappedValue - 251) / 299) * 20; // 251 to 550
+  } else {
+    return 80 + ((mappedValue - 551) / 449) * 20; // 551 to 1000
+  }
+}
+
 function changeElementsAmount() {
-  displayValue.textContent = rangeInput.value;
-  amountOfBars = rangeInput.value;
+  const value = parseInt(rangeInput.value, 10);
+  const mappedValue = mapSliderValue(value).toFixed(0);
+  console.log(mappedValue);
+  displayValue.textContent = mappedValue;
+  amountOfBars = mappedValue;
   localStorage.setItem("barsAmount", amountOfBars);
   setBarQuantity(amountOfBars)
 }
@@ -233,6 +292,15 @@ let arr = [];
 let barContainer = document.getElementById("barsBarContainer");
 
 function setBarQuantity(qta) {
+  if (qta > 1000) qta = 1;
+  else if (qta > 500) {
+    document.getElementById("delayToVisualizeLabel").style.opacity = 0.5;
+    document.getElementById("delayToVisualizeOpSwitch").style.opacity = 0.5;
+  }
+  else {
+    document.getElementById("delayToVisualizeLabel").style.opacity = 1;
+    document.getElementById("delayToVisualizeOpSwitch").style.opacity = 1;
+  }
   barContainer.innerHTML = ``;
   for (let i = 0; i < qta; i++)
     barContainer.innerHTML += `<div class="bar"></div>`;
@@ -240,20 +308,19 @@ function setBarQuantity(qta) {
 }
 
 let minBarValue = 0;
-let maxBarValue = 100;
+let maxBarValue = 1000;
 
 async function randomizeBars() {
   arr = [];
   bars = document.querySelectorAll(".bar");
   arrayContentDisplay.textContent = "";
   for (let i = 0; i < amountOfBars; i++) {
-    await delay(10 / amountOfBars);
     let randomNumber = Math.floor(Math.random() * (maxBarValue - minBarValue + 1) + minBarValue);
     arrayContentDisplay.textContent += `${randomNumber} `;
     arr[i] = randomNumber;
     let percentage = ((randomNumber - minBarValue) / (maxBarValue - minBarValue)) * 100;
     if (percentage < 0.5) percentage == 0.5;
-    bars[i].style.width = `${percentage}%`; // set the width of the bar
+    setBarWidth(i, isVerticalState, percentage);
   }
 }
 
@@ -283,24 +350,24 @@ function toggleSlowMoSort() { // triggered when the switch is clicked
 
 document.addEventListener("DOMContentLoaded", () => {
   setTimeout(() => {
-    createBarsOnAppLoad();
     checkSelectedMethodOnAppLoad();
     findSlowMoStateAtLoad();
+    getRotateStateAtLoad();
+    createBarsOnAppLoad();
   }, 10);
 });
 function createBarsOnAppLoad() {
   if (!localStorage.getItem("barsAmount"))
     localStorage.setItem("barsAmount", 25);
   amountOfBars = parseInt(localStorage.getItem("barsAmount"));
-  rangeInput.value = amountOfBars;
-  displayValue.textContent = rangeInput.value;
+  rangeInput.value = reverseMapSliderValue(amountOfBars).toFixed(0);
+  displayValue.textContent = amountOfBars;
   setBarQuantity(amountOfBars);
 }
 
 function delay(ms, ignoreOption) {
   if (slowMoState == "0" && !ignoreOption) return;
-  else
-    return new Promise(resolve => setTimeout(resolve, ms));
+  return new Promise(resolve => setTimeout(resolve, ms));
 }
 
 const sortMethodSelection = document.getElementById("sortMethodSelection");
@@ -312,7 +379,6 @@ function checkSelectedMethodOnAppLoad() {
     localStorage.setItem("selectedSortMethod", 0);
   selectedSortMethod = parseInt(localStorage.getItem("selectedSortMethod"));
   sortMethodSelection.value = selectedSortMethod;
-  console.log("AA");
 }
 
 sortMethodSelection.addEventListener("change", (e) => {
@@ -346,7 +412,7 @@ let totalTime = 0;
 async function showChanges(idx1, idx2) {
   bars = document.querySelectorAll(".bar");
   bars[idx2].classList.add("active");
-  await delay(300 / amountOfBars);
+  await delay(100 / amountOfBars);
   bars[idx1].classList.add("active");
   bars[idx1].classList.remove("active");
   bars[idx2].classList.remove("active");
@@ -388,20 +454,20 @@ async function bubbleSort() {
         let sortingEndTime = performance.now(); // Record end time for sorting phase
         sortingTime = (sortingEndTime - sortingStartTime);
         time += sortingTime; // Accumulate sorting phase time
-        if (slowMoState == "1") {
+        if (slowMoState == "1" && amountOfBars < 500) {
           showChanges(i, i + 1);
           // Add a delay for visualization purposes (if needed)
-          await delay(300 / amountOfBars); // Adjust the delay time as needed
+          await delay(100 / amountOfBars); // Adjust the delay time as needed
         }
       }
     }
     // Visualize the changes after each complete pass
-    if (slowMoState == "1") {
+    if (slowMoState == "1" && amountOfBars < 500) {
       arrayContentDisplay.textContent = "";
       for (let j = 0; j < arr.length; j++) {
         let percentage = ((arr[j] - minBarValue) / (maxBarValue - minBarValue)) * 100;
         if (percentage < 0.5) percentage = 0.5;
-        bars[j].style.width = percentage + "%"; // set the width of the bar
+        setBarWidth(j, isVerticalState, percentage);
         arrayContentDisplay.textContent += `${arr[j]} `;
         makeSingleReport("Bubble sort");
       }
@@ -412,7 +478,7 @@ async function bubbleSort() {
   for (let j = 0; j < arr.length; j++) {
     let percentage = ((arr[j] - minBarValue) / (maxBarValue - minBarValue)) * 100;
     if (percentage < 0.5) percentage = 0.5;
-    bars[j].style.width = percentage + "%"; // set the width of the bar
+    setBarWidth(j, isVerticalState, percentage);
     arrayContentDisplay.textContent += `${arr[j]} `;
   }
   const endTime = performance.now(); // Record end time in microseconds
@@ -433,18 +499,32 @@ async function bubbleSort() {
     bar.classList.remove("active"));
 }
 
+function calculateTolerance(num1, num2) {
+  const difference = Math.abs(num1 - num2);
+  const base = Math.max(num1, num2);
+  return (difference / base) * 100;
+}
 
+
+const sortMethodDisplay = document.getElementById("sort_method_display");
+const totalTimeDisplay = document.getElementById("total_time");
 function makeSingleReport(sortMethod) {
-  const sortMethodDisplay = document.getElementById("sort_method_display");
   const numElementsDisplay = document.getElementById("num_elements");
   const rangeValuesDisplay = document.getElementById("range_values");
+  const averageExpDisplay = document.getElementById("average_expected");
+  const averageValDisplay = document.getElementById("average_values");
+  const averageTolDisplay = document.getElementById("average_tolerance");
   const calcTimeDisplay = document.getElementById("calc_time");
-  const totalTimeDisplay = document.getElementById("total_time");
   const memoryAccessesDisplay = document.getElementById("memory_accesses");
   const swapsDisplay = document.getElementById("swaps");
   sortMethodDisplay.textContent = sortMethod;
   numElementsDisplay.textContent = amountOfBars;
   rangeValuesDisplay.textContent = `${minBarValue}-${maxBarValue}`
+  averageExpDisplay.textContent = ((maxBarValue + minBarValue) / 2).toFixed(2);
+  let avg = 0;
+  arr.forEach(val => avg += val);
+  averageValDisplay.textContent = (avg / arr.length).toFixed(2);
+  averageTolDisplay.textContent = calculateTolerance(averageExpDisplay.textContent, averageValDisplay.textContent).toFixed(2) + "%";
   calcTimeDisplay.textContent = `${executionTime.toFixed(3)} ms`; // Update calcTimeDisplay
   totalTimeDisplay.textContent = `${totalTime.toFixed(3)} sec`; // Update totalTimeDisplay
   memoryAccessesDisplay.textContent = selMemAccesses;
@@ -488,5 +568,115 @@ function setFullScreen(enable) {
     barContainer.classList.add("expandedArrayView");
   } else {
     barContainer.classList.remove("expandedArrayView");
+  }
+}
+
+function getRotateStateAtLoad() {
+  if (localStorage.getItem("verticalState") && localStorage.getItem("verticalState") == "true") {
+    isVerticalState = true;
+    barContainer.classList.add("verticalBarsContainer");
+  }
+  else {
+    isVerticalState = false;
+    barContainer.classList.remove("verticalBarsContainer");
+    bars.forEach(bar => bar.classList.remove("verticalBars"));
+  }
+  localStorage.setItem("verticalState", isVerticalState);
+}
+
+function changeRotateArray() {
+  if (isVerticalState) {
+    isVerticalState = false;
+    barContainer.classList.remove("verticalBarsContainer");
+    bars.forEach(bar => bar.classList.remove("verticalBars"));
+  }
+  else {
+    isVerticalState = true;
+    barContainer.classList.add("verticalBarsContainer");
+  }
+  localStorage.setItem("verticalState", isVerticalState);
+  updateGraph();
+}
+
+function saveArrayImage() {
+  document.body.style.overflow = "scroll !important";
+  setTimeout(() => {
+    downloadImage("barsBarContainer", `(ArraySize:${amountOfBars})(Range:${minBarValue}-${maxBarValue})`, () => {
+      window.location.reload();
+    });
+  }, 1);
+}
+
+function downloadReport() {
+  if (totalTimeDisplay.textContent != "0.000 sec" && totalTimeDisplay.textContent != "") {
+    document.body.style.overflow = "scroll !important";
+    document.getElementById("downloadReportBtn").style.display = "none";
+    document.getElementById("copyArrayContentBtn").style.display = "none";
+    document.getElementById("keyboard_arrow_upSummary").style.display = "none";
+    document.getElementById("arrayValuesDetails").open = true;
+    setTimeout(() => {
+      downloadImage("downloadReportContainer", `(ArraySortReport)(Method:${sortMethodDisplay.textContent})(ArraySize:${amountOfBars})(Range:${minBarValue}-${maxBarValue})`, () => {
+        window.location.reload();
+      });
+    }, 1);
+  }
+}
+
+function downloadImage(divId, fileName, callback) {
+  return new Promise(function (resolve, reject) {
+    // Get the div element
+    var divElement = document.getElementById(divId);
+
+    // Apply inline styles to the div and its children
+
+    // Use dom-to-image to render the div to an image
+    domtoimage.toBlob(divElement)
+      .then(function (blob) {
+        // Create a link element
+        var link = document.createElement('a');
+
+        // Create a URL for the blob object
+        var url = URL.createObjectURL(blob);
+
+        // Set the href and download attributes of the link
+        link.href = url;
+        link.download = fileName;
+
+        // Append the link to the document body
+        document.body.appendChild(link);
+
+        // Trigger a click event on the link to initiate download
+        link.click();
+
+        // Remove the link from the document body
+        document.body.removeChild(link);
+
+        // Revoke the URL to release memory
+        URL.revokeObjectURL(url);
+
+        // Resolve the Promise
+
+        // Call the callback function
+        if (callback && typeof callback === 'function') {
+          callback();
+        }
+      })
+      .catch(function (error) {
+        console.error('Error rendering image:', error);
+      });
+    resolve();
+  });
+}
+
+function applyInlineStyles(element) {
+  // Apply inline styles to the element
+  element.style.fontFamily = 'Calibri, Arial, sans-serif'; // Example font family
+  element.style.backgroundColor = "rgb(229, 229, 229)";
+  // Add more styles as needed
+
+  // Apply inline styles to the children of the element recursively
+  var children = element.children;
+  for (var i = 0; i < children.length; i++) {
+    applyInlineStyles(children[i]);
   }
 }
