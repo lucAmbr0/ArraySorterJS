@@ -350,10 +350,10 @@ function toggleSlowMoSort() { // triggered when the switch is clicked
 
 document.addEventListener("DOMContentLoaded", () => {
   setTimeout(() => {
-    createBarsOnAppLoad();
     checkSelectedMethodOnAppLoad();
     findSlowMoStateAtLoad();
     getRotateStateAtLoad();
+    createBarsOnAppLoad();
   }, 10);
 });
 function createBarsOnAppLoad() {
@@ -506,15 +506,15 @@ function calculateTolerance(num1, num2) {
 }
 
 
+const sortMethodDisplay = document.getElementById("sort_method_display");
+const totalTimeDisplay = document.getElementById("total_time");
 function makeSingleReport(sortMethod) {
-  const sortMethodDisplay = document.getElementById("sort_method_display");
   const numElementsDisplay = document.getElementById("num_elements");
   const rangeValuesDisplay = document.getElementById("range_values");
   const averageExpDisplay = document.getElementById("average_expected");
   const averageValDisplay = document.getElementById("average_values");
   const averageTolDisplay = document.getElementById("average_tolerance");
   const calcTimeDisplay = document.getElementById("calc_time");
-  const totalTimeDisplay = document.getElementById("total_time");
   const memoryAccessesDisplay = document.getElementById("memory_accesses");
   const swapsDisplay = document.getElementById("swaps");
   sortMethodDisplay.textContent = sortMethod;
@@ -596,4 +596,87 @@ function changeRotateArray() {
   }
   localStorage.setItem("verticalState", isVerticalState);
   updateGraph();
+}
+
+function saveArrayImage() {
+  document.body.style.overflow = "scroll !important";
+  setTimeout(() => {
+    downloadImage("barsBarContainer", `(ArraySize:${amountOfBars})(Range:${minBarValue}-${maxBarValue})`, () => {
+      window.location.reload();
+    });
+  }, 1);
+}
+
+function downloadReport() {
+  if (totalTimeDisplay.textContent != "0.000 sec" && totalTimeDisplay.textContent != "") {
+    document.body.style.overflow = "scroll !important";
+    document.getElementById("downloadReportBtn").style.display = "none";
+    document.getElementById("copyArrayContentBtn").style.display = "none";
+    document.getElementById("keyboard_arrow_upSummary").style.display = "none";
+    document.getElementById("arrayValuesDetails").open = true;
+    setTimeout(() => {
+      downloadImage("downloadReportContainer", `(ArraySortReport)(Method:${sortMethodDisplay.textContent})(ArraySize:${amountOfBars})(Range:${minBarValue}-${maxBarValue})`, () => {
+        window.location.reload();
+      });
+    }, 1);
+  }
+}
+
+function downloadImage(divId, fileName, callback) {
+  return new Promise(function (resolve, reject) {
+    // Get the div element
+    var divElement = document.getElementById(divId);
+
+    // Apply inline styles to the div and its children
+
+    // Use dom-to-image to render the div to an image
+    domtoimage.toBlob(divElement)
+      .then(function (blob) {
+        // Create a link element
+        var link = document.createElement('a');
+
+        // Create a URL for the blob object
+        var url = URL.createObjectURL(blob);
+
+        // Set the href and download attributes of the link
+        link.href = url;
+        link.download = fileName;
+
+        // Append the link to the document body
+        document.body.appendChild(link);
+
+        // Trigger a click event on the link to initiate download
+        link.click();
+
+        // Remove the link from the document body
+        document.body.removeChild(link);
+
+        // Revoke the URL to release memory
+        URL.revokeObjectURL(url);
+
+        // Resolve the Promise
+
+        // Call the callback function
+        if (callback && typeof callback === 'function') {
+          callback();
+        }
+      })
+      .catch(function (error) {
+        console.error('Error rendering image:', error);
+      });
+    resolve();
+  });
+}
+
+function applyInlineStyles(element) {
+  // Apply inline styles to the element
+  element.style.fontFamily = 'Calibri, Arial, sans-serif'; // Example font family
+  element.style.backgroundColor = "rgb(229, 229, 229)";
+  // Add more styles as needed
+
+  // Apply inline styles to the children of the element recursively
+  var children = element.children;
+  for (var i = 0; i < children.length; i++) {
+    applyInlineStyles(children[i]);
+  }
 }

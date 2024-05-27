@@ -168,7 +168,7 @@ input:focus {
 
 summary {
     padding-left: 5px;
-    margin-top: 20px;
+    margin: 20px 0 10px 0;
     display: flex;
     align-items: center;
 }
@@ -177,6 +177,7 @@ summary span {
     color: rgb(var(--palette-900)) !important;
     transform: rotate(90deg);
     transition: 0.2s transform ease-in-out;
+    margin-right: 8px;
 }
 
 details[open] summary span {
@@ -184,7 +185,7 @@ details[open] summary span {
 }
 
 summary h2 {
-    margin: 0 0 0 8px;
+    margin: 0;
 }
 
 details p {
@@ -744,19 +745,31 @@ label {
     margin: 1vh;
 }
 
-.simulationResultsContainer {
+#simulationResultsContainer {
     border: solid 1px rgb(var(--palette-400));
     background-color: rgb(var(--palette-50));
     padding: 0.5vh 1vh;
-    width: 100%;
     border-radius: 0 0 2vh 2vh;
 }
 
-.simulationResultsContainer tbody {
-    margin: 1vh;
+#simulationResultsContainer table {
+    width: 100%;
     font-family: var(--StandardTextFont);
+    color: rgb(var(--palette-950));
 }
 
+#simulationResultsContainer td {
+    border-bottom: solid 1px rgb(var(--palette-950));
+}
+
+#simulationResultsContainer td:last-child {
+    margin-left: auto;
+    text-align: end;
+}
+
+#downloadReportBtn {
+    margin: 1.5vh 0 .5vh auto;
+}
 .embedContainer {
     display: flex;
     flex-direction: column;
