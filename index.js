@@ -388,26 +388,37 @@ async function bubbleSort() {
         let sortingEndTime = performance.now(); // Record end time for sorting phase
         sortingTime = (sortingEndTime - sortingStartTime);
         time += sortingTime; // Accumulate sorting phase time
-        showChanges(i, i + 1);
-        // Add a delay for visualization purposes (if needed)
-        await delay(300 / amountOfBars); // Adjust the delay time as needed
+        if (slowMoState == "1") {
+          showChanges(i, i + 1);
+          // Add a delay for visualization purposes (if needed)
+          await delay(300 / amountOfBars); // Adjust the delay time as needed
+        }
+      }
+    }
+    // Visualize the changes after each complete pass
+    if (slowMoState == "1") {
+      arrayContentDisplay.textContent = "";
+      for (let j = 0; j < arr.length; j++) {
+        let percentage = ((arr[j] - minBarValue) / (maxBarValue - minBarValue)) * 100;
+        if (percentage < 0.5) percentage = 0.5;
+        bars[j].style.width = percentage + "%"; // set the width of the bar
+        arrayContentDisplay.textContent += `${arr[j]} `;
+        makeSingleReport("Bubble sort");
       }
     }
 
-    // Visualize the changes after each complete pass
-    arrayContentDisplay.textContent = "";
-    for (let j = 0; j < arr.length; j++) {
-      let percentage = ((arr[j] - minBarValue) / (maxBarValue - minBarValue)) * 100;
-      if (percentage < 0.5) percentage = 0.5;
-      bars[j].style.width = percentage + "%"; // set the width of the bar
-      arrayContentDisplay.textContent += `${arr[j]} `;
-    }
-
   } while (!checkIfSorted(true));
-
+  arrayContentDisplay.textContent = "";
+  for (let j = 0; j < arr.length; j++) {
+    let percentage = ((arr[j] - minBarValue) / (maxBarValue - minBarValue)) * 100;
+    if (percentage < 0.5) percentage = 0.5;
+    bars[j].style.width = percentage + "%"; // set the width of the bar
+    arrayContentDisplay.textContent += `${arr[j]} `;
+  }
   const endTime = performance.now(); // Record end time in microseconds
   totalTime = (endTime - startTime) / 1000;
   executionTime = time / 1000000;
+  makeSingleReport("Bubble sort");
 
   for (let j = 0; j < arr.length; j++) {
     bars[j].classList.add("active");
@@ -416,7 +427,6 @@ async function bubbleSort() {
   bars.forEach(bar => {
     bar.style.transition = "0.25s width ease-in-out"
   });
-  makeSingleReport("Bubble sort");
   await delay(1000, true);
   bars.forEach(bar =>
     bar.classList.remove("active"));
