@@ -259,6 +259,7 @@ h5 {
     from {
         opacity: 0;
     }
+
     to {
         opacity: 1;
     }
@@ -853,10 +854,28 @@ input[type="range"]:focus::-webkit-slider-runnable-track {
     color: rgb(var(--palette-100));
     border-radius: 10px;
     font-family: monospace;
-    text-align: justify;    
+    text-align: justify;
 }
 
 .arrayValuesContainer button {
     margin: 10px 0 0 auto;
     border-radius: 10px;
+}
+
+#expandArrayView {
+    display: flex;
+    position: absolute;
+    margin-top: .5vh;
+    right: 2.5vh;
+}
+
+.expandedArrayView {
+    height: 100vh !important;
+    width: 100vw !important;
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    z-index: 1 !important;
+    margin-bottom: 0 !important;
+    padding: 0 !important;
 }

@@ -417,7 +417,8 @@ async function bubbleSort() {
   }
   const endTime = performance.now(); // Record end time in microseconds
   totalTime = (endTime - startTime) / 1000;
-  executionTime = time / 1000000;
+  executionTime = time / 1000;
+  if (slowMoState == "1") executionTime /= 1000;
   makeSingleReport("Bubble sort");
 
   for (let j = 0; j < arr.length; j++) {
@@ -444,7 +445,7 @@ function makeSingleReport(sortMethod) {
   sortMethodDisplay.textContent = sortMethod;
   numElementsDisplay.textContent = amountOfBars;
   rangeValuesDisplay.textContent = `${minBarValue}-${maxBarValue}`
-  calcTimeDisplay.textContent = `${executionTime.toFixed(5)} ms`; // Update calcTimeDisplay
+  calcTimeDisplay.textContent = `${executionTime.toFixed(3)} ms`; // Update calcTimeDisplay
   totalTimeDisplay.textContent = `${totalTime.toFixed(3)} sec`; // Update totalTimeDisplay
   memoryAccessesDisplay.textContent = selMemAccesses;
   swapsDisplay.textContent = selSwaps;
@@ -480,4 +481,12 @@ function copyArrayContent() {
   document.body.removeChild(textarea);
 
   window.alert("Copied array to your clipboard");
+}
+
+function setFullScreen(enable) {
+  if (enable) {
+    barContainer.classList.add("expandedArrayView");
+  } else {
+    barContainer.classList.remove("expandedArrayView");
+  }
 }
