@@ -56,17 +56,13 @@ I will try to keep the repository structure as clean as possible to make mainten
 │   service_worker.js
 │   style.css
 │
+├───.idx
+│       dev.nix
+│
 ├───Fonts
 │   ├───Noto_Sans
 │   │       NotoSans-Italic-VariableFont_wdth,wght.ttf
 │   │       NotoSans-VariableFont_wdth,wght.ttf
-│   │
-│   ├───Poppins
-│   │       Poppins-Bold.ttf
-│   │       Poppins-Light.ttf
-│   │       Poppins-Medium.ttf
-│   │       Poppins-Regular.ttf
-│   │       Poppins-SemiBold.ttf
 │   │
 │   └───Rubik
 │           Rubik-VariableFont_wght.ttf
