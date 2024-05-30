@@ -578,6 +578,74 @@ async function selectionSort() {
     bar.classList.remove("active"));
 }
 
+async function insertionSort() {
+  bars = document.querySelectorAll(".bar");
+  bars.forEach(bar => bar.style.transition = "none");
+  let tmp = 0;
+  selSwaps = 0;
+  selMemAccesses = 0;
+  checkIfSortedTimes = 0;
+  time = 0
+  let sortingTime = 0;
+  const startTime = performance.now(); // Record start time in microseconds
+  let sortingStartTime = performance.now(); // Record start time for sorting phase
+  let n = arr.length;
+  for (let i = 1; i < n; i++) {
+    selMemAccesses++;
+    let key = arr[i];
+    let j = i - 1;
+    while (j >= 0 && arr[j] > key) {
+      selMemAccesses++;
+      tmp = arr[j];
+      arr[j + 1] = tmp;
+      j = j - 1;
+      selSwaps++;
+      let sortingEndTime = performance.now(); // Record end time for sorting phase
+      sortingTime = (sortingEndTime - sortingStartTime);
+      time += sortingTime; // Accumulate sorting phase time
+      if (slowMoState == "1" && amountOfBars < 500 && j >= 0) {
+        showChanges(i, j);
+        // Add a delay for visualization purposes (if needed)
+        await delay(100 / amountOfBars); // Adjust the delay time as needed
+      }
+    }
+    arr[j + 1] = key;
+    if (slowMoState == "1" && amountOfBars < 500) {
+      arrayContentDisplay.textContent = "";
+      for (let j = 0; j < arr.length; j++) {
+        let percentage = ((arr[j] - minBarValue) / (maxBarValue - minBarValue)) * 100;
+        if (percentage < 0.5) percentage = 0.5;
+        setBarWidth(j, isVerticalState, percentage);
+        arrayContentDisplay.textContent += `${arr[j]} `;
+        makeSingleReport("Insertion sort");
+      }
+    }
+  }
+  const endTime = performance.now(); // Record end time in microseconds
+  totalTime = (endTime - startTime) / 1000;
+  executionTime = time / 1000;
+  arrayContentDisplay.textContent = "";
+  for (let j = 0; j < arr.length; j++) {
+    let percentage = ((arr[j] - minBarValue) / (maxBarValue - minBarValue)) * 100;
+    if (percentage < 0.5) percentage = 0.5;
+    setBarWidth(j, isVerticalState, percentage);
+    arrayContentDisplay.textContent += `${arr[j]} `;
+  }
+  if (slowMoState == "1") executionTime /= 1000;
+  makeSingleReport("Insertion sort");
+
+  for (let j = 0; j < arr.length; j++) {
+    bars[j].classList.add("active");
+    await delay(500 / amountOfBars);
+  }
+  bars.forEach(bar => {
+    bar.style.transition = "0.25s all ease-in-out"
+  });
+  await delay(1000, true);
+  bars.forEach(bar =>
+    bar.classList.remove("active"));
+}
+
 function calculateTolerance(num1, num2) {
   const difference = Math.abs(num1 - num2);
   const base = Math.max(num1, num2);
@@ -613,10 +681,19 @@ function makeSingleReport(sortMethod) {
 function runSelected() {
   switch (selectedSortMethod) {
     case 0:
+    case '0':
+    case "0":
       bubbleSort();
       break;
     case 1:
+    case '1':
+    case "1":
       selectionSort();
+      break;
+    case 2:
+    case '2':
+    case "2":
+      insertionSort();
       break;
     default:
       break;

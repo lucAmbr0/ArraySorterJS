@@ -56,17 +56,13 @@ I will try to keep the repository structure as clean as possible to make mainten
 │   service_worker.js
 │   style.css
 │
+├───.idx
+│       dev.nix
+│
 ├───Fonts
 │   ├───Noto_Sans
 │   │       NotoSans-Italic-VariableFont_wdth,wght.ttf
 │   │       NotoSans-VariableFont_wdth,wght.ttf
-│   │
-│   ├───Poppins
-│   │       Poppins-Bold.ttf
-│   │       Poppins-Light.ttf
-│   │       Poppins-Medium.ttf
-│   │       Poppins-Regular.ttf
-│   │       Poppins-SemiBold.ttf
 │   │
 │   └───Rubik
 │           Rubik-VariableFont_wght.ttf
@@ -134,7 +130,7 @@ Configuring the simulator is straightforward. Users can adjust array parameters 
 Yes, absolutely! Contributions are always well-accepted! To know more, go to the contribution section of this readme
 
 * **How are you?** <br>
-It's a little cold at home now, I think I'll put on a sweater. Thanks for asking <3
+Great, thx <3
 
 ##  :camera: Gallery
 Not ready yet :D
