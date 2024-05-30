@@ -447,6 +447,7 @@ async function bubbleSort() {
     for (let i = 0; i < arr.length - 1; i++) {
       selMemAccesses++;
       if (arr[i] > arr[i + 1]) {
+        selMemAccesses++;
         tmp = arr[i];
         arr[i] = arr[i + 1];
         arr[i + 1] = tmp;
@@ -492,7 +493,85 @@ async function bubbleSort() {
     await delay(500 / amountOfBars);
   }
   bars.forEach(bar => {
-    bar.style.transition = "0.25s width ease-in-out"
+    bar.style.transition = "0.25s all ease-in-out"
+  });
+  await delay(1000, true);
+  bars.forEach(bar =>
+    bar.classList.remove("active"));
+}
+
+async function selectionSort() {
+  bars = document.querySelectorAll(".bar");
+  bars.forEach(bar => bar.style.transition = "none");
+  let tmp = 0;
+  selSwaps = 0;
+  selMemAccesses = 0;
+  checkIfSortedTimes = 0;
+  time = 0
+  let sortingTime = 0;
+  const startTime = performance.now(); // Record start time in microseconds
+  let sortingStartTime = performance.now(); // Record start time for sorting phase
+  let n = arr.length;
+  for (let i = 0; i < n - 1; i++) {
+    selMemAccesses++;
+    let minIndex = i;
+    for (let j = i + 1; j < n; j++) {
+      selMemAccesses++;
+      if (arr[j] < arr[minIndex]) {
+        selMemAccesses++;
+        minIndex = j;
+        if (slowMoState == "1" && amountOfBars < 500) {
+          showChanges(minIndex, j);
+          // Add a delay for visualization purposes (if needed)
+          await delay(100 / amountOfBars); // Adjust the delay time as needed
+        }
+      }
+    }
+    if (minIndex != i) {
+      tmp = arr[i];
+      selSwaps++;
+      arr[i] = arr[minIndex];
+      arr[minIndex] = tmp;
+      selMemAccesses++;
+      let sortingEndTime = performance.now(); // Record end time for sorting phase
+      sortingTime = (sortingEndTime - sortingStartTime);
+      time += sortingTime; // Accumulate sorting phase time
+      if (slowMoState == "1" && amountOfBars < 500) {
+        showChanges(i, minIndex + 1);
+        // Add a delay for visualization purposes (if needed)
+        await delay(100 / amountOfBars); // Adjust the delay time as needed
+      }
+    }
+    if (slowMoState == "1" && amountOfBars < 500) {
+      arrayContentDisplay.textContent = "";
+      for (let j = 0; j < arr.length; j++) {
+        let percentage = ((arr[j] - minBarValue) / (maxBarValue - minBarValue)) * 100;
+        if (percentage < 0.5) percentage = 0.5;
+        setBarWidth(j, isVerticalState, percentage);
+        arrayContentDisplay.textContent += `${arr[j]} `;
+        makeSingleReport("Selection sort");
+      }
+    }
+  }
+  arrayContentDisplay.textContent = "";
+  for (let j = 0; j < arr.length; j++) {
+    let percentage = ((arr[j] - minBarValue) / (maxBarValue - minBarValue)) * 100;
+    if (percentage < 0.5) percentage = 0.5;
+    setBarWidth(j, isVerticalState, percentage);
+    arrayContentDisplay.textContent += `${arr[j]} `;
+  }
+  const endTime = performance.now(); // Record end time in microseconds
+  totalTime = (endTime - startTime) / 1000;
+  executionTime = time / 1000;
+  if (slowMoState == "1") executionTime /= 1000;
+  makeSingleReport("Selection sort");
+
+  for (let j = 0; j < arr.length; j++) {
+    bars[j].classList.add("active");
+    await delay(500 / amountOfBars);
+  }
+  bars.forEach(bar => {
+    bar.style.transition = "0.25s all ease-in-out"
   });
   await delay(1000, true);
   bars.forEach(bar =>
@@ -535,6 +614,9 @@ function runSelected() {
   switch (selectedSortMethod) {
     case 0:
       bubbleSort();
+      break;
+    case 1:
+      selectionSort();
       break;
     default:
       break;
