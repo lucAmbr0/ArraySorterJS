@@ -134,7 +134,7 @@ Configuring the simulator is straightforward. Users can adjust array parameters 
 Yes, absolutely! Contributions are always well-accepted! To know more, go to the contribution section of this readme
 
 * **How are you?** <br>
-It's a little cold at home now, I think I'll put on a sweater. Thanks for asking <3
+Great, thx <3
 
 ##  :camera: Gallery
 Not ready yet :D
