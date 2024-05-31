@@ -280,7 +280,6 @@ function reverseMapSliderValue(mappedValue) {
 function changeElementsAmount() {
   const value = parseInt(rangeInput.value, 10);
   const mappedValue = mapSliderValue(value).toFixed(0);
-  console.log(mappedValue);
   displayValue.textContent = mappedValue;
   amountOfBars = mappedValue;
   localStorage.setItem("barsAmount", amountOfBars);
@@ -451,8 +450,6 @@ async function bubbleSort() {
         arr[i] = arr[i + 1];
         arr[i + 1] = tmp;
         selSwaps++;
-        let sortingEndTime = performance.now(); // Record end time for sorting phase
-        sortingTime = (sortingEndTime - sortingStartTime);
         time += sortingTime; // Accumulate sorting phase time
         if (slowMoState == "1" && amountOfBars < 500) {
           showChanges(i, i + 1);
@@ -530,8 +527,6 @@ async function selectionSort() {
       arr[i] = arr[minIndex];
       arr[minIndex] = tmp;
       selMemAccesses++;
-      let sortingEndTime = performance.now(); // Record end time for sorting phase
-      sortingTime = (sortingEndTime - sortingStartTime);
       time += sortingTime; // Accumulate sorting phase time
       if (slowMoState == "1" && amountOfBars < 500) {
         showChanges(i, minIndex + 1);
@@ -595,8 +590,6 @@ async function insertionSort() {
       arr[j + 1] = tmp;
       j = j - 1;
       selSwaps++;
-      let sortingEndTime = performance.now(); // Record end time for sorting phase
-      sortingTime = (sortingEndTime - sortingStartTime);
       time += sortingTime; // Accumulate sorting phase time
       if (slowMoState == "1" && amountOfBars < 500 && j >= 0) {
         showChanges(i, j);
@@ -626,6 +619,70 @@ async function insertionSort() {
     arrayContentDisplay.textContent += `${arr[j]} `;
   }
   makeSingleReport("Insertion sort");
+
+  for (let j = 0; j < arr.length; j++) {
+    bars[j].classList.add("active");
+    await delay(500 / amountOfBars);
+  }
+  bars.forEach(bar => {
+    bar.style.transition = "0.25s all ease-in-out"
+  });
+  await delay(1000, true);
+  bars.forEach(bar =>
+    bar.classList.remove("active"));
+}
+
+async function bogoSort() {
+  if (!confirm("Bogo sort is a very unefficient method which may require up to thousands of years to sort an array. Do you want to continue?")) {
+    makeSingleReport("Bogo sort");
+    return;
+  }
+  bars = document.querySelectorAll(".bar");
+  bars.forEach(bar => bar.style.transition = "none");
+  let tmp = 0;
+  selSwaps = 0;
+  selMemAccesses = 0;
+  checkIfSortedTimes = 0;
+  time = 0
+  const startTime = performance.now(); // Record start time in microseconds
+  do {
+    checkIfSortedTimes++;
+    let randIdx1 = Math.floor(Math.random() * arr.length);
+    selMemAccesses++;
+    let randIdx2 = Math.floor(Math.random() * arr.length);
+    selMemAccesses++;
+    tmp = arr[randIdx1];
+    arr[randIdx1] = arr[randIdx2];
+    arr[randIdx2] = tmp;
+    selSwaps++;
+    if (slowMoState == "1" && amountOfBars < 500) {
+      showChanges(randIdx1, randIdx2);
+      // Add a delay for visualization purposes (if needed)
+      await delay(100 / amountOfBars); // Adjust the delay time as needed
+      arrayContentDisplay.textContent = "";
+      for (let j = 0; j < arr.length; j++) {
+        let percentage = ((arr[j] - minBarValue) / (maxBarValue - minBarValue)) * 100;
+        if (percentage < 0.5) percentage = 0.5;
+        setBarWidth(j, isVerticalState, percentage);
+        arrayContentDisplay.textContent += `${arr[j]} `;
+        makeSingleReport("Selection sort");
+      }
+    }
+    makeSingleReport("Bogo sort");
+  } while (!checkIfSorted(true) && checkIfSortedTimes <= 5000);
+  if (checkIfSortedTimes > 5000) {
+    alert("Bogo sort failed after 5000 attempts.");
+  }
+  arrayContentDisplay.textContent = "";
+  for (let j = 0; j < arr.length; j++) {
+    let percentage = ((arr[j] - minBarValue) / (maxBarValue - minBarValue)) * 100;
+    if (percentage < 0.5) percentage = 0.5;
+    setBarWidth(j, isVerticalState, percentage);
+    arrayContentDisplay.textContent += `${arr[j]} `;
+  }
+  const endTime = performance.now(); // Record end time in microseconds
+  totalTime = (endTime - startTime) / 1000;
+  makeSingleReport("Bogo sort");
 
   for (let j = 0; j < arr.length; j++) {
     bars[j].classList.add("active");
@@ -689,6 +746,11 @@ function runSelected() {
     case '2':
     case "2":
       insertionSort();
+      break;
+    case 3:
+    case '3':
+    case "3":
+      bogoSort();
       break;
     default:
       break;
