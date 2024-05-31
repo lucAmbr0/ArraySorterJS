@@ -500,13 +500,12 @@ button.buttonOutline:active {
     display: grid;
     grid-template-columns: 5fr 5fr;
     align-items: center;
-    margin: .5vh;
+    margin: 0 10px;
 }
 
 .appInfoBox {
     grid-template-columns: 2fr 3fr;
     text-align: right;
-    margin: 0 10px;
 }
 
 #appFooterContainer {

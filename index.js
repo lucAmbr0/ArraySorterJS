@@ -347,10 +347,35 @@ function toggleSlowMoSort() { // triggered when the switch is clicked
   localStorage.setItem('slowMoState', slowMoState);
 }
 
+const toggleAscendingOrderSwitch = document.getElementById("ascendingOrderSwitch"); // reference to the switch <input> item which actually is a checkbox type
+let ascendingOrderState = "1";
+
+function findAscendingOrderStateAtLoad() {
+  if (localStorage.getItem('ascendingOrderState')) {
+    ascendingOrderState = localStorage.getItem('ascendingOrderState');
+    if (ascendingOrderState == "1") {
+      toggleAscendingOrderSwitch.checked = true;
+    }
+  }
+  else ascendingOrderState = "0";
+  localStorage.setItem('ascendingOrderState', ascendingOrderState);
+}
+
+function toggleAscendingOrder() { // triggered when the switch is clicked
+  if (toggleAscendingOrderSwitch.checked) {
+    ascendingOrderState = "1";
+  }
+  else if (!toggleAscendingOrderSwitch.checked) {
+    ascendingOrderState = "0";
+  }
+  localStorage.setItem('ascendingOrderState', ascendingOrderState);
+}
+
 document.addEventListener("DOMContentLoaded", () => {
   setTimeout(() => {
     checkSelectedMethodOnAppLoad();
     findSlowMoStateAtLoad();
+    findAscendingOrderStateAtLoad();
     getRotateStateAtLoad();
     createBarsOnAppLoad();
   }, 10);
@@ -420,10 +445,10 @@ function checkIfSorted(inAscending) {
   checkIfSortedTimes++;
   for (let i = 0; i < arr.length - 1; i++) {
     selMemAccesses++;
-    if (inAscending && arr[i] > arr[i + 1]) {
+    if (inAscending == "1" && arr[i] > arr[i + 1]) {
       return false;
     }
-    else if (!inAscending && arr[i] < arr[i + 1]) {
+    else if (inAscending  == "0" && arr[i] < arr[i + 1]) {
       return false;
     }
   }
@@ -444,7 +469,20 @@ async function bubbleSort() {
     let sortingStartTime = performance.now(); // Record start time for sorting phase
     for (let i = 0; i < arr.length - 1; i++) {
       selMemAccesses++;
-      if (arr[i] > arr[i + 1]) {
+      if (ascendingOrderState == "1" && arr[i] > arr[i + 1]) {
+        selMemAccesses++;
+        tmp = arr[i];
+        arr[i] = arr[i + 1];
+        arr[i + 1] = tmp;
+        selSwaps++;
+        time += sortingTime; // Accumulate sorting phase time
+        if (slowMoState == "1" && amountOfBars < 500) {
+          showChanges(i, i + 1);
+          // Add a delay for visualization purposes (if needed)
+          await delay(100 / amountOfBars); // Adjust the delay time as needed
+        }
+      }
+      else if (ascendingOrderState == "0" && arr[i] < arr[i + 1]) {
         selMemAccesses++;
         tmp = arr[i];
         arr[i] = arr[i + 1];
@@ -470,7 +508,7 @@ async function bubbleSort() {
       }
     }
 
-  } while (!checkIfSorted(true));
+  } while (!checkIfSorted(ascendingOrderState));
   arrayContentDisplay.textContent = "";
   for (let j = 0; j < arr.length; j++) {
     let percentage = ((arr[j] - minBarValue) / (maxBarValue - minBarValue)) * 100;
@@ -508,28 +546,28 @@ async function selectionSort() {
   let n = arr.length;
   for (let i = 0; i < n - 1; i++) {
     selMemAccesses++;
-    let minIndex = i;
+    let targetIndex = i;
     for (let j = i + 1; j < n; j++) {
       selMemAccesses++;
-      if (arr[j] < arr[minIndex]) {
+      if ((ascendingOrderState == "1" && arr[j] < arr[targetIndex]) || (ascendingOrderState == "0" && arr[j] > arr[targetIndex])) {
         selMemAccesses++;
-        minIndex = j;
+        targetIndex = j;
         if (slowMoState == "1" && amountOfBars < 500) {
-          showChanges(minIndex, j);
+          showChanges(targetIndex, j);
           // Add a delay for visualization purposes (if needed)
           await delay(100 / amountOfBars); // Adjust the delay time as needed
         }
       }
     }
-    if (minIndex != i) {
-      tmp = arr[i];
+    if (targetIndex != i) {
+      let tmp = arr[i];
       selSwaps++;
-      arr[i] = arr[minIndex];
-      arr[minIndex] = tmp;
+      arr[i] = arr[targetIndex];
+      arr[targetIndex] = tmp;
       selMemAccesses++;
       time += sortingTime; // Accumulate sorting phase time
       if (slowMoState == "1" && amountOfBars < 500) {
-        showChanges(i, minIndex + 1);
+        showChanges(i, targetIndex);
         // Add a delay for visualization purposes (if needed)
         await delay(100 / amountOfBars); // Adjust the delay time as needed
       }
@@ -584,10 +622,10 @@ async function insertionSort() {
     selMemAccesses++;
     let key = arr[i];
     let j = i - 1;
-    while (j >= 0 && arr[j] > key) {
+
+    while (j >= 0 && ((ascendingOrderState == "1" && arr[j] > key) || (ascendingOrderState == "0" && arr[j] < key))) {
       selMemAccesses++;
-      tmp = arr[j];
-      arr[j + 1] = tmp;
+      arr[j + 1] = arr[j];
       j = j - 1;
       selSwaps++;
       time += sortingTime; // Accumulate sorting phase time
@@ -598,6 +636,7 @@ async function insertionSort() {
       }
     }
     arr[j + 1] = key;
+    selMemAccesses++;
     if (slowMoState == "1" && amountOfBars < 500) {
       arrayContentDisplay.textContent = "";
       for (let j = 0; j < arr.length; j++) {
@@ -669,7 +708,7 @@ async function bogoSort() {
       }
     }
     makeSingleReport("Bogo sort");
-  } while (!checkIfSorted(true) && checkIfSortedTimes <= 5000);
+  } while (!checkIfSorted(ascendingOrderState) && checkIfSortedTimes <= 5000);
   if (checkIfSortedTimes > 5000) {
     alert("Bogo sort failed after 5000 attempts.");
   }
