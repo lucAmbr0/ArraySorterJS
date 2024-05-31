@@ -203,6 +203,28 @@
         </p>
       </div> -->
       <div class="settingsSection">
+        <h2 class="settingHeader">Customization</h2>
+        <div class="switch-container">
+          <label for="themeSelection" class="switch-label">Color theme</label>
+          <select name="theme" id="themeSelection">
+            <option value="san-marino-theme">Marino</option>
+            <option value="red-damask-theme">Damask</option>
+            <option value="olivine-theme">Olivine</option>
+            <option value="indigo-theme">Indigo</option>
+          </select>
+          <div class="switch-label" id="ascendingOrder">Ascending order</div>
+          <div class="switch" id="ascending">
+            <input
+              type="checkbox"
+              id="ascendingOrderSwitch"
+              class="switch-input"
+              onchange="toggleAscendingOrder()"
+            />
+            <label for="ascendingOrderSwitch" class="switch-toggle"></label>
+          </div>
+        </div>
+      </div>
+      <div class="settingsSection">
         <h2 class="settingHeader">
           <img
             src="icons/icon-any-192x192.png"
@@ -216,7 +238,7 @@
           <label class="alignToRight">Array Sorter</label>
           <label class="switch-label">App version</label>
           <label class="alignToRight" id="latestVersionDisplay"
-            >1.16.51</label
+            >1.17.54</label
           >
           <label class="switch-label">License</label>
           <label class="alignToRight">

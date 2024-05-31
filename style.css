@@ -29,20 +29,10 @@
 
     --socialIconCol: invert();
     --boxBorderColor: transparent;
+    --body-background: 242, 246, 252;
 
     --HeadingFont: "Rubik";
     --StandardTextFont: "Noto Sans";
-}
-
-.darkModeVariables {
-    --solidCol: 240, 240, 240;
-    --boxShadow0: 0 0 0 rgba(0, 0, 0, 0);
-    --boxShadow1: 0 0 0 rgba(0, 0, 0, 0);
-    --boxShadow2: 0 0 0 rgba(0, 0, 0, 0);
-    --boxShadow3: 0 0 0 rgba(0, 0, 0, 0);
-    --boxShadow4: 0 0 0 rgba(0, 0, 0, 0);
-    --socialIconCol: dark;
-    --boxBorderColor: var(--palette-600);
 }
 
 .LIGHTsan-marino-theme {
@@ -57,21 +47,8 @@
     --palette-800: 58, 83, 147;
     --palette-900: 51, 71, 117;
     --palette-950: 35, 44, 72;
-}
 
-.DARKsan-marino-theme {
-    --palette-950: 35, 44, 72;
-    --palette-900: 51, 71, 117;
-    --palette-800: 58, 83, 147;
-    --palette-700: 65, 100, 180;
-    --palette-600: 74, 117, 196;
-    --palette-500: 95, 144, 210;
-    --palette-400: 126, 172, 220;
-    --palette-300: 168, 201, 232;
-    --palette-200: 203, 222, 242;
-    --palette-100: 226, 236, 247;
-    --palette-50: 242, 246, 252;
-    --boxBorderColor: rgb(51, 71, 117);
+    --body-background: 242, 246, 252;
 }
 
 .LIGHTred-damask-theme {
@@ -86,51 +63,40 @@
     --palette-800: 130, 53, 42;
     --palette-900: 105, 45, 37;
     --palette-950: 56, 21, 18;
+
+    --body-background: 252, 245, 240;
 }
 
-.DARKred-damask-theme {
-    --palette-950: 56, 21, 18;
-    --palette-900: 105, 45, 37;
-    --palette-800: 130, 53, 42;
-    --palette-700: 162, 63, 44;
-    --palette-600: 195, 82, 51;
-    --palette-500: 209, 103, 61;
-    --palette-400: 218, 133, 93;
-    --palette-300: 229, 174, 140;
-    --palette-200: 239, 207, 185;
-    --palette-100: 248, 232, 220;
-    --palette-50: 252, 245, 240;
-    --boxBorderColor: rgb(105, 45, 37);
+.LIGHTolivine-theme {
+    --palette-50: 243, 248, 237;
+    --palette-100: 228, 239, 216;
+    --palette-200: 202, 225, 181;
+    --palette-300: 167, 205, 137;
+    --palette-400: 137, 185, 100;
+    --palette-500: 106, 157, 69;
+    --palette-600: 81, 124, 52;
+    --palette-700: 63, 96, 43;
+    --palette-800: 53, 77, 39;
+    --palette-900: 47, 67, 36;
+    --palette-950: 22, 35, 16;
+
+    --body-background: 243, 248, 237;
 }
 
-.LIGHTshamrock-theme {
-    --palette-50: 236, 253, 246;
-    --palette-100: 210, 249, 230;
-    --palette-200: 169, 241, 210;
-    --palette-300: 113, 228, 186;
-    --palette-400: 61, 209, 160;
-    --palette-500: 20, 181, 133;
-    --palette-600: 8, 147, 109;
-    --palette-700: 6, 118, 90;
-    --palette-800: 8, 93, 72;
-    --palette-900: 8, 76, 60;
-    --palette-950: 3, 43, 35;
+.LIGHTindigo-theme {
+    --palette-50: 247, 246, 252;
+    --palette-100: 241, 239, 248;
+    --palette-200: 227, 225, 243;
+    --palette-300: 205, 201, 233;
+    --palette-400: 179, 169, 220;
+    --palette-500: 151, 134, 204;
+    --palette-600: 127, 100, 185;
+    --palette-700: 116, 88, 169;
+    --palette-800: 97, 74, 141;
+    --palette-900: 80, 62, 116;
+    --palette-950: 51, 39, 78;
 }
 
-.DARKshamrock-theme {
-    --palette-950: 3, 43, 35;
-    --palette-900: 8, 76, 60;
-    --palette-800: 8, 93, 72;
-    --palette-700: 6, 118, 90;
-    --palette-600: 8, 147, 109;
-    --palette-500: 20, 181, 133;
-    --palette-400: 61, 209, 160;
-    --palette-300: 113, 228, 186;
-    --palette-200: 169, 241, 210;
-    --palette-100: 210, 249, 230;
-    --palette-50: 236, 253, 246;
-    --boxBorderColor: rgb(8, 76, 60);
-}
 
 /* ---------------  MAIN RULES  --------------- */
 
@@ -153,7 +119,7 @@ html {
 body {
     overscroll-behavior: contain;
     margin: 0;
-    background: rgb(var(--palette-50));
+    background: rgb(var(--body-background));
     width: 100vw;
     overflow-x: hidden;
     overscroll-behavior: none;
@@ -202,6 +168,18 @@ h5 {
     font-family: var(--HeadingFont);
     font-display: swap;
     margin: 0;
+}
+
+.switch-container select {
+    border-radius: 8px;
+    width: fit-content;
+    border: solid 1px rgba(128, 128, 128, 0.7);
+    background-color: rgba(var(--palette-200), 0.5);
+    color: rgb(var(--palette-950));
+    margin: 5px 0 5px auto;
+    text-align: left;
+    font-size: 1em;
+    padding: 7px;
 }
 
 /* -------------------- FONTS --------------------*/
@@ -500,13 +478,12 @@ button.buttonOutline:active {
     display: grid;
     grid-template-columns: 5fr 5fr;
     align-items: center;
-    margin: .5vh;
+    margin: 0 10px;
 }
 
 .appInfoBox {
     grid-template-columns: 2fr 3fr;
     text-align: right;
-    margin: 0 10px;
 }
 
 #appFooterContainer {
