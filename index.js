@@ -373,6 +373,7 @@ function toggleAscendingOrder() { // triggered when the switch is clicked
 
 document.addEventListener("DOMContentLoaded", () => {
   setTimeout(() => {
+    getThemeFromStorage(); // When the page loads look for user's dark theme choice in local storage, if there isn't activates light mode 
     checkSelectedMethodOnAppLoad();
     findSlowMoStateAtLoad();
     findAscendingOrderStateAtLoad();
@@ -934,4 +935,29 @@ function applyInlineStyles(element) {
   for (var i = 0; i < children.length; i++) {
     applyInlineStyles(children[i]);
   }
+}
+
+// ---------------  THEMES AND COLOR ACCENTS  ---------------
+
+themeSelection.addEventListener("change", () => {
+  activeTheme = themeSelection.value;
+  setTheme();
+});
+
+function getThemeFromStorage() {
+  if (!localStorage.getItem('theme')) {
+    return "blueTheme";
+  } else {
+    return localStorage.getItem('theme');
+  }
+}
+
+function setTheme() {
+  themeSelection.value = activeTheme;
+  document.body.classList.remove("LIGHTsan-marino-theme");
+  document.body.classList.remove("LIGHTred-damask-theme");
+  document.body.classList.remove("LIGHTolivine-theme");
+  document.body.classList.remove("LIGHTindigo-theme");
+  document.body.classList.add("LIGHT" + activeTheme);
+  localStorage.setItem('theme', activeTheme)
 }
