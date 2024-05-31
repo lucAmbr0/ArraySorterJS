@@ -406,7 +406,6 @@ let totMemAccesses = 0;
 let totSwaps = 0;
 let checkIfSortedTimes = 0;
 let time = 0;
-let executionTime = 0;
 let totalTime = 0;
 
 async function showChanges(idx1, idx2) {
@@ -484,8 +483,6 @@ async function bubbleSort() {
   }
   const endTime = performance.now(); // Record end time in microseconds
   totalTime = (endTime - startTime) / 1000;
-  executionTime = time / 1000;
-  if (slowMoState == "1") executionTime /= 1000;
   makeSingleReport("Bubble sort");
 
   for (let j = 0; j < arr.length; j++) {
@@ -562,8 +559,6 @@ async function selectionSort() {
   }
   const endTime = performance.now(); // Record end time in microseconds
   totalTime = (endTime - startTime) / 1000;
-  executionTime = time / 1000;
-  if (slowMoState == "1") executionTime /= 1000;
   makeSingleReport("Selection sort");
 
   for (let j = 0; j < arr.length; j++) {
@@ -623,7 +618,6 @@ async function insertionSort() {
   }
   const endTime = performance.now(); // Record end time in microseconds
   totalTime = (endTime - startTime) / 1000;
-  executionTime = time / 1000;
   arrayContentDisplay.textContent = "";
   for (let j = 0; j < arr.length; j++) {
     let percentage = ((arr[j] - minBarValue) / (maxBarValue - minBarValue)) * 100;
@@ -631,7 +625,6 @@ async function insertionSort() {
     setBarWidth(j, isVerticalState, percentage);
     arrayContentDisplay.textContent += `${arr[j]} `;
   }
-  if (slowMoState == "1") executionTime /= 1000;
   makeSingleReport("Insertion sort");
 
   for (let j = 0; j < arr.length; j++) {
@@ -672,8 +665,10 @@ function makeSingleReport(sortMethod) {
   arr.forEach(val => avg += val);
   averageValDisplay.textContent = (avg / arr.length).toFixed(2);
   averageTolDisplay.textContent = calculateTolerance(averageExpDisplay.textContent, averageValDisplay.textContent).toFixed(2) + "%";
-  calcTimeDisplay.textContent = `${executionTime.toFixed(3)} ms`; // Update calcTimeDisplay
-  totalTimeDisplay.textContent = `${totalTime.toFixed(3)} sec`; // Update totalTimeDisplay
+  if (slowMoState == "0") totalTime *= 1000;
+  totalTimeDisplay.textContent = `${totalTime.toFixed(3)}`; // Update totalTimeDisplay
+  if (slowMoState == "0") totalTimeDisplay.textContent += " ms";
+  else totalTimeDisplay.textContent += " sec";
   memoryAccessesDisplay.textContent = selMemAccesses;
   swapsDisplay.textContent = selSwaps;
 }
