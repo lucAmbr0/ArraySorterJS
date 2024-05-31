@@ -371,16 +371,6 @@ function toggleAscendingOrder() { // triggered when the switch is clicked
   localStorage.setItem('ascendingOrderState', ascendingOrderState);
 }
 
-document.addEventListener("DOMContentLoaded", () => {
-  setTimeout(() => {
-    getThemeFromStorage(); // When the page loads look for user's dark theme choice in local storage, if there isn't activates light mode 
-    checkSelectedMethodOnAppLoad();
-    findSlowMoStateAtLoad();
-    findAscendingOrderStateAtLoad();
-    getRotateStateAtLoad();
-    createBarsOnAppLoad();
-  }, 10);
-});
 function createBarsOnAppLoad() {
   if (!localStorage.getItem("barsAmount"))
     localStorage.setItem("barsAmount", 25);
@@ -961,3 +951,15 @@ function setTheme() {
   document.body.classList.add("LIGHT" + activeTheme);
   localStorage.setItem('themeARRJS', activeTheme)
 }
+
+document.addEventListener("DOMContentLoaded", () => {
+  setTimeout(() => {
+    activeTheme = getThemeFromStorage(); // When the page loads look for user's dark theme choice in local storage, if there isn't activates light mode 
+    setTheme();
+    checkSelectedMethodOnAppLoad();
+    findSlowMoStateAtLoad();
+    findAscendingOrderStateAtLoad();
+    getRotateStateAtLoad();
+    createBarsOnAppLoad();
+  }, 10);
+});
