@@ -945,10 +945,10 @@ themeSelection.addEventListener("change", () => {
 });
 
 function getThemeFromStorage() {
-  if (!localStorage.getItem('theme')) {
+  if (!localStorage.getItem('themeARRJS')) {
     return "blueTheme";
   } else {
-    return localStorage.getItem('theme');
+    return localStorage.getItem('themeARRJS');
   }
 }
 
@@ -959,5 +959,5 @@ function setTheme() {
   document.body.classList.remove("LIGHTolivine-theme");
   document.body.classList.remove("LIGHTindigo-theme");
   document.body.classList.add("LIGHT" + activeTheme);
-  localStorage.setItem('theme', activeTheme)
+  localStorage.setItem('themeARRJS', activeTheme)
 }
