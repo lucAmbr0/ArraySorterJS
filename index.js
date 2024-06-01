@@ -439,7 +439,7 @@ function checkIfSorted(inAscending) {
     if (inAscending == "1" && arr[i] > arr[i + 1]) {
       return false;
     }
-    else if (inAscending  == "0" && arr[i] < arr[i + 1]) {
+    else if (inAscending == "0" && arr[i] < arr[i + 1]) {
       return false;
     }
   }
@@ -926,6 +926,46 @@ function applyInlineStyles(element) {
     applyInlineStyles(children[i]);
   }
 }
+
+minBarValue = 0;
+maxBarValue = 1000;
+minBarDisplay = document.getElementById("minBarDisplay");
+maxBarDisplay = document.getElementById("maxBarDisplay");
+function getRangeAtAppLoad() {
+  if (localStorage.getItem("minBarValue")) {
+    minBarValue = localStorage.getItem("minBarValue");
+  }
+  else {
+    localStorage.setItem("minBarValue", 0);
+    minBarValue = 0;
+  }
+  minBarDisplay.value = minBarValue;
+  if (localStorage.getItem("maxBarValue")) {
+    maxBarValue = localStorage.getItem("maxBarValue");
+  }
+  else {
+    localStorage.setItem("maxBarValue", 1000);
+    maxBarValue = 1000;
+  }
+  maxBarDisplay.value = maxBarValue;
+}
+async function updateRange() {
+  minBarValue = parseInt(minBarDisplay.value);
+  maxBarValue = parseInt(maxBarDisplay.value);
+  if (minBarValue > 100000) minBarValue = 100000;
+  else if (minBarValue < -100000) minBarValue = -100000;
+  if (maxBarValue > 100000) maxBarValue = 100000;
+  else if (maxBarValue < -100000) maxBarValue = -100000;
+  if (maxBarValue < minBarValue) {
+    minBarDisplay.value = 0;
+    maxBarDisplay.value = 1000;
+  }
+  minBarDisplay.value = minBarValue;
+  maxBarDisplay.value = maxBarValue;
+  localStorage.setItem("minBarValue", minBarValue);
+  localStorage.setItem("maxBarValue", maxBarValue);
+}
+
 
 // ---------------  THEMES AND COLOR ACCENTS  ---------------
 
