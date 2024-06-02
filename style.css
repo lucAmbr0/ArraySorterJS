@@ -732,14 +732,18 @@ label {
     margin: 2vh 0;
     overflow: hidden;
     background-color: rgb(var(--palette-50));
-    border: solid 1px rgb(var(--palette-400));
+    border: solid 2px rgb(var(--palette-400));
     border-radius:  1.5vh;
+    /* box-shadow: 0 0 8px rgba(0, 0, 0, 0.2); */
     padding: 10px !important;
 }
 
 .sortDescContainer h2 {
-    padding: 5px 0;
+    margin: -10px -10px 0px -10px !important;
+    padding: 10px;
     border-bottom: solid 1px rgb(var(--palette-400));
+    color: rgb(var(--palette-900));
+    background-color: rgb(var(--palette-100));
 }
 
 .sortDescContainer p {
@@ -748,7 +752,7 @@ label {
 
 .sortDescContainer table {
     border-radius: 10px 10px 10px 10px;
-    background-color: rgb(var(--palette-200));
+    background-color: rgba(var(--palette-200), 0.5);
     font-family: var(--StandardTextFont);
     color: rgb(var(--palette-950));
     margin: 10px 0;
@@ -779,9 +783,19 @@ label {
 }
 
 .sortDescContainer a {
-    font-style: underline;
+    font-style: normal;
+    text-decoration: none;
     font-family: var(--StandardTextFont);
+    color: rgb(var(--palette-600));
     text-align: left;
+    display: flex;
+    align-items: center;
+}
+
+.sortDescContainer button {
+    border-radius: 1vh;
+    margin: auto 0 auto auto;
+    width: fit-content;
 }
 
 .embedContainer .bar {
