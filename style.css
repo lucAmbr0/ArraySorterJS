@@ -196,6 +196,13 @@ h5 {
     font-style: normal;
 }
 
+@font-face {
+    font-family: 'Material Outlined';
+    src: url('Fonts/Material_Symbols/MaterialSymbolsOutlined-VariableFont_FILL\,GRAD\,opsz\,wght.ttf') format('truetype');
+    font-style: normal;
+    font-display: swap;
+}
+
 /* ---------------  ANIMATIONS --------------- */
 
 @keyframes appTabs {
@@ -391,6 +398,8 @@ button.buttonOutline:active {
 }
 
 .material-symbols-outlined {
+    font-family: "Material Outlined";
+    font-size: 24px;
     color: rgb(var(--palette-950));
 }
 
