@@ -1,131 +1,107 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <!--
+
+<head>
+  <!--
                     ++ Array Sorter ++
             Made with <3 by @luca.ambroo_ 
             GitHub: https://github.com/lucAmbr0/
             IG: https://www.instagram.com/luca.ambroo_/  
         -->
-    <title>Array Sorter</title>
-    <link rel="stylesheet" href="style.css" />
-    <meta charset="UTF-8" />
-    <meta name="theme-color" content="var(--palette-950)" />
-    <meta
-      meta
-      name="viewport"
-      content="
+  <title>Array Sorter</title>
+  <link rel="stylesheet" href="style.css" />
+  <meta charset="UTF-8" />
+  <meta name="theme-color" content="var(--palette-950)" />
+  <meta meta name="viewport" content="
       width=device-width,
       initial-scale=1,
       maximum-scale=5,
       user-scalable=yes
       viewport-fit=cover,
-      orientation=portrait"
-      id="viewportMeta"
-    />
-    <meta
-      name="description"
-      content="A web-based tool enabling users to simulate array sorting algorithms like selection sort, quick sort, etc., offering a clean UI and customization options, aimed at educational purposes."
-    />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" />
-    <link rel="icon" href="icons/icon-any-192x192.png" />
-    <link rel="manifest" href="manifest.json" />
-    <link
-      rel="stylesheet preconnect"
-      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
-    />
-  </head>
-  <body>
-    <div id="blurOverlay"></div>
-    <div id="newVersionBox">
-      <h1>The app just got updated, YAY!</h1>
-      <h3>
-        This app has just received a new stable update. You can read about any
-        changes at the
-        <a
-          href="https://github.com/lucAmbr0/ArraySorterJS/commits/master/"
-          >changelog</a
-        >
-      </h3>
-      <p>Your old version <span id="prevVer"></span></p>
-      <p>Updated to <span id="newVer"></span></p>
-      <button
-        class="submitBtn"
-        style="margin: 0 0 0 auto"
-        onclick="closeUpdateNotice()"
-      >
-        <span class="material-symbols-outlined iconForButton">check</span>Okay
-      </button>
+      orientation=portrait" id="viewportMeta" />
+  <meta name="description"
+    content="A web-based tool enabling users to simulate array sorting algorithms like selection sort, quick sort, etc., offering a clean UI and customization options, aimed at educational purposes." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" />
+  <link rel="icon" href="icons/icon-any-192x192.png" />
+  <link rel="manifest" href="manifest.json" />
+  <link rel="stylesheet preconnect"
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+</head>
+
+<body>
+  <div id="blurOverlay"></div>
+  <div id="newVersionBox">
+    <h1>The app just got updated, YAY!</h1>
+    <h3>
+      This app has just received a new stable update. You can read about any
+      changes at the
+      <a href="https://github.com/lucAmbr0/ArraySorterJS/commits/master/">changelog</a>
+    </h3>
+    <p>Your old version <span id="prevVer"></span></p>
+    <p>Updated to <span id="newVer"></span></p>
+    <button class="submitBtn" style="margin: 0 0 0 auto" onclick="closeUpdateNotice()">
+      <span class="material-symbols-outlined iconForButton">check</span>Okay
+    </button>
+  </div>
+  <div class="appTabs" id="arrayTab">
+    <h1 class="arrayCardTitle">Array Elements</h1>
+    <div id="simulationButtonsContainer">
+      <span class="material-symbols-outlined" id="expandArrayView" onclick="setFullScreen(true)">fullscreen</span>
+      <span class="material-symbols-outlined" id="rotateArrayView" onclick="changeRotateArray()">screen_rotation</span>
+      <span class="material-symbols-outlined" id="saveArrayView" onclick="saveArrayImage()">download</span>
     </div>
-    <div class="appTabs" id="arrayTab">
-      <h1 class="arrayCardTitle">Array Elements</h1>
-      <div id="simulationButtonsContainer">
-        <span class="material-symbols-outlined" id="expandArrayView" onclick="setFullScreen(true)">fullscreen</span>
-        <span class="material-symbols-outlined" id="rotateArrayView" onclick="changeRotateArray()">screen_rotation</span>
-        <span class="material-symbols-outlined" id="saveArrayView" onclick="saveArrayImage()">download</span>
+    <div class="embedContainer" id="barsBarContainer" onclick="setFullScreen(false)">
+    </div>
+    <div class="switch-container">
+      <div class="switch-label" id="delayToVisualizeLabel">Delay to visualize</div>
+      <div class="switch" id="delayToVisualizeOpSwitch">
+        <input type="checkbox" id="visualizeDelaySwitch" class="switch-input" onchange="toggleSlowMoSort()" />
+        <label for="visualizeDelaySwitch" class="switch-toggle"></label>
       </div>
-        <div class="embedContainer" id="barsBarContainer" onclick="setFullScreen(false)">
-        </div>
-        <div class="switch-container">
-          <div class="switch-label" id="delayToVisualizeLabel">Delay to visualize</div>
-          <div class="switch" id="delayToVisualizeOpSwitch">
-            <input
-              type="checkbox"
-              id="visualizeDelaySwitch"
-              class="switch-input"
-              onchange="toggleSlowMoSort()"
-            />
-            <label for="visualizeDelaySwitch" class="switch-toggle"></label>
-          </div>
-          <div class="switch-label">Array elements</div>
-          <div style="display: flex;">
-            <input
-            type="range"
-            id="numOfElementsRange"
-            class="switch-input range-input"
-            onchange="changeElementsAmount()"
-            min="0"
-            max="100"
-            placeholder="12"
-          >
-            <p id="arrayElementsDisplay">25</p>
-          </div>
+      <div class="switch-label">Array elements</div>
+      <div style="display: flex;">
+        <input type="range" id="numOfElementsRange" class="switch-input range-input" onchange="changeElementsAmount()"
+          min="0" max="100" placeholder="12">
+        <p id="arrayElementsDisplay">25</p>
       </div>
-      <div class="arrayTabRunButtonsContainer">
-        <!-- <button class="buttonOutline">
+    </div>
+    <div class="arrayTabRunButtonsContainer">
+      <!-- <button class="buttonOutline">
           <span class="material-symbols-outlined">
             fast_forward
           </span>Run all</button> -->
-          <button id="runSelectedMethodBtn"><span class="material-symbols-outlined">
-            play_arrow
-          </span>
-            Run
-            <select name="SortMethod" id="sortMethodSelection">
-              <option value="0">Bubble Sort</option>
-              <option value="1">Selection Sort</option>
-              <option value="2">Insertion Sort</option>
-              <option value="3">Bogo Sort</option>
-            </select>
-          </button>
-          <button class="buttonOutline" onclick="randomizeBars()">
-            <span class="material-symbols-outlined">
-            shuffle
-            </span>Randomize array</button>
-        </div>
+      <button id="runSelectedMethodBtn"><span class="material-symbols-outlined">
+          play_arrow
+        </span>
+        Run
+        <select name="SortMethod" id="sortMethodSelection">
+          <option value="0">Bubble Sort</option>
+          <option value="1">Selection Sort</option>
+          <option value="2">Insertion Sort</option>
+          <option value="3">Bogo Sort</option>
+        </select>
+      </button>
+      <button class="buttonOutline" onclick="randomizeBars()">
+        <span class="material-symbols-outlined">
+          shuffle
+        </span>Randomize array</button>
     </div>
-    <div class="appTabs" id="resultsTab">
-      <div id="downloadReportContainer">
+  </div>
+  <div class="appTabs" id="resultsTab">
+    <div id="downloadReportContainer">
       <h1 class="arrayCardTitle">Simulation Results</h2>
-      <div id="simulationResultsContainer">
+        <div id="simulationResultsContainer">
           <table>
             <tbody>
               <tr>
                 <td>Sorting method</td>
-                <td id="sort_method_display"></td> </tr>
+                <td id="sort_method_display"></td>
+              </tr>
               <tr>
                 <td>Number of elements</td>
-                <td id="num_elements"></td> </tr>
+                <td id="num_elements"></td>
+              </tr>
               <tr>
                 <td>Range of values</td>
                 <td id="range_values"></td>
@@ -160,27 +136,27 @@
             <summary>
               <span id="keyboard_arrow_upSummary" class="material-symbols-outlined">
                 keyboard_arrow_up
+              </span>
+              <h2>Array values</h2>
+            </summary>
+            <div class="arrayValuesContainer">
+              <p id="arrayContentDisplay">.</p>
+              <button id="copyArrayContentBtn" onclick="copyArrayContent()">
+                <span class="material-symbols-outlined">
+                  content_copy
                 </span>
-                <h2>Array values</h2>
-              </summary>
-              <div class="arrayValuesContainer">
-                <p id="arrayContentDisplay">.</p>
-                <button id="copyArrayContentBtn" onclick="copyArrayContent()">
-                  <span class="material-symbols-outlined">
-                    content_copy
-                  </span>
-                  Copy
-                </button>
-              </div>
+                Copy
+              </button>
+            </div>
           </details>
           <button id="downloadReportBtn" onclick="downloadReport()">
-          <span class="material-symbols-outlined">
-            download
+            <span class="material-symbols-outlined">
+              download
             </span>Save report
           </button>
         </div>
-        </div>
-      <!-- <div class="card">
+    </div>
+    <!-- <div class="card">
         <h1>Customize Tab</h1>
         <h2>Tab n.2</h2>
         <p>
@@ -190,9 +166,9 @@
           doloribus necessitatibus.
         </p>
       </div> -->
-    </div>
-    <div class="appTabs" id="customizeTab">
-      <!-- <div class="card">
+  </div>
+  <div class="appTabs" id="customizeTab">
+    <!-- <div class="card">
         <h1>Settings Tab</h1>
         <h2>Tab n.3</h2>
         <p>
@@ -202,109 +178,404 @@
           iusto qui.
         </p>
       </div> -->
-      <div class="settingsSection">
-        <h2 class="settingHeader">Customization</h2>
-        <div class="switch-container">
-            <label for="themeSelection" class="switch-label">Color theme</label>
-            <select name="theme" id="themeSelection">
-              <option value="san-marino-theme">Marino</option>
-              <option value="red-damask-theme">Damask</option>
-              <option value="olivine-theme">Olivine</option>
-              <option value="indigo-theme">Indigo</option>
-            </select>
-            <div class="switch-label" id="ascendingOrder">Ascending order</div>
-            <div class="switch" id="ascending">
-              <input
-                type="checkbox"
-                id="ascendingOrderSwitch"
-                class="switch-input"
-                onchange="toggleAscendingOrder()"
-              />
-              <label for="ascendingOrderSwitch" class="switch-toggle"></label>
-            </div>
-            <div class="switch-label" id="valuesRange">Values range</div>
-            <div class="rangeContainer">
-              <input type="number" id="minBarDisplay" min="-100000" max="100000" value="0" onchange="updateRange()">
-              <p> - </p>
-              <input type="number" id="maxBarDisplay" min="-100000" max="100000" value="1000" onchange="updateRange()">
-          </div>
+    <div class="settingsSection">
+      <h2 class="settingHeader">Customization</h2>
+      <div class="switch-container">
+        <label for="themeSelection" class="switch-label">Color theme</label>
+        <select name="theme" id="themeSelection">
+          <option value="san-marino-theme">Marino</option>
+          <option value="red-damask-theme">Damask</option>
+          <option value="olivine-theme">Olivine</option>
+          <option value="indigo-theme">Indigo</option>
+        </select>
+        <div class="switch-label" id="ascendingOrder">Ascending order</div>
+        <div class="switch" id="ascending">
+          <input type="checkbox" id="ascendingOrderSwitch" class="switch-input" onchange="toggleAscendingOrder()" />
+          <label for="ascendingOrderSwitch" class="switch-toggle"></label>
+        </div>
+        <div class="switch-label" id="valuesRange">Values range</div>
+        <div class="rangeContainer">
+          <input type="number" id="minBarDisplay" min="-100000" max="100000" value="0" onchange="updateRange()">
+          <p> - </p>
+          <input type="number" id="maxBarDisplay" min="-100000" max="100000" value="1000" onchange="updateRange()">
         </div>
       </div>
-      <div class="settingsSection">
-        <h2 class="settingHeader">
-          <img
-            src="icons/icon-any-192x192.png"
-            alt="App Icon"
-            class="appIcon"
-          />
-          App information
-        </h2>
-        <div class="switch-container appInfoBox">
-          <label class="switch-label">PWA Name</label>
-          <label class="alignToRight">Array Sorter</label>
-          <label class="switch-label">App version</label>
-          <label class="alignToRight" id="latestVersionDisplay"
-            >1.20.61</label
-          >
-          <label class="switch-label">License</label>
-          <label class="alignToRight">
-            <a
-              href="https://github.com/lucAmbr0/ArraySorterJS/blob/master/LICENSE"
-              >MIT License</a
-            ></label
-          >
-        </div>
-        <a
-          href="https://wakatime.com/@lucAmbr0/projects/xjfqmslgwr?start=2024-05-24&end=2024-05-24"
-          class="nerdLinks"
-          ><img
-            src="https://wakatime.com/badge/user/018d849f-dec6-4519-8001-9879fc3b773b/project/1e617c97-cdd6-4433-83b2-c852df442915.svg?style=flat"
-            class="roundedWakaBadge"
-            alt="wakatime"
-        /></a>
-      </div>
-      <div id="appFooterContainer">
-        <img
-          src="icons/github-mark.svg"
-          id="socialIcon"
-          onclick="annoyGitCat()"
-        />
-        <label
-          ><a href="https://github.com/lucAmbr0">github.com/lucAmbr0</a></label
-        >
-      </div>
-      <div style="display: flex; justify-content: center; margin-bottom: 25px">
-        <a
-          class="nerdLinks"
-          href="https://github.com/lucAmbr0/ArraySorterJS/commits/master/"
-          >Changelog</a
-        >
-        <a
-          class="nerdLinks"
-          href="https://github.com/lucAmbr0/ArraySorterJS/archive/refs/heads/master.zip"
-          >Source code</a
-        >
-      </div>
     </div>
+    <div class="settingsSection">
+      <h2 class="settingHeader">
+        <img src="icons/icon-any-192x192.png" alt="App Icon" class="appIcon" />
+        App information
+      </h2>
+      <div class="switch-container appInfoBox">
+        <label class="switch-label">PWA Name</label>
+        <label class="alignToRight">Array Sorter</label>
+        <label class="switch-label">App version</label>
+        <label class="alignToRight" id="latestVersionDisplay">1.21.62</label>
+        <label class="switch-label">License</label>
+        <label class="alignToRight">
+          <a href="https://github.com/lucAmbr0/ArraySorterJS/blob/master/LICENSE">MIT License</a></label>
+      </div>
+      <a href="https://wakatime.com/@lucAmbr0/projects/xjfqmslgwr?start=2024-05-24&end=2024-05-24"
+        class="nerdLinks"><img
+          src="https://wakatime.com/badge/user/018d849f-dec6-4519-8001-9879fc3b773b/project/1e617c97-cdd6-4433-83b2-c852df442915.svg?style=flat"
+          class="roundedWakaBadge" alt="wakatime" /></a>
     </div>
-    <nav id="navbar">
-      <div class="navbarBtn" onclick="navbarAction(0)">
-        <span class="material-symbols-outlined navbarIcon"> fast_forward </span>
-        <p class="navbarLabel navbarLabelActive">Simulate</p>
-      </div>
-      <div class="navbarBtn" onclick="navbarAction(1)">
-        <span class="material-symbols-outlined navbarIcon"> database </span>
-        <p class="navbarLabel">Results</p>
-      </div>
-      <div class="navbarBtn" onclick="navbarAction(2)">
-        <span class="material-symbols-outlined navbarIcon"> settings </span>
-        <p class="navbarLabel">Settings</p>
-      </div>
-    </nav>
-    <div id="navbarFixed"></div>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/dom-to-image/2.6.0/dom-to-image.min.js"></script>
-    <script src="index.js"></script>
-  </body>
+    <div id="appFooterContainer">
+      <img src="icons/github-mark.svg" id="socialIcon" onclick="annoyGitCat()" />
+      <label><a href="https://github.com/lucAmbr0">github.com/lucAmbr0</a></label>
+    </div>
+    <div style="display: flex; justify-content: center; margin-bottom: 25px">
+      <a class="nerdLinks" href="https://github.com/lucAmbr0/ArraySorterJS/commits/master/">Changelog</a>
+      <a class="nerdLinks" href="https://github.com/lucAmbr0/ArraySorterJS/archive/refs/heads/master.zip">Source
+        code</a>
+    </div>
+  </div>
+  <div class="appTabs" id="aboutTab">
+    <h1>About sort methods</h1>
+    <div class="sortDescContainer">
+      <h2>Bubble sort</h2>
+      <p>Bubble sort, sometimes referred to as sinking sort, is a simple sorting algorithm that repeatedly steps through
+        the input list element by element, comparing the current element with the one after it, swapping their values if
+        needed. These passes through the list are repeated until no swaps have to be performed during a pass, meaning
+        that the list has become fully sorted. The algorithm, which is a comparison sort, is named for the way the
+        larger elements "bubble" up to the top of the list.</p>
+      <table>
+        <tbody>
+          <tr>
+            <td>Speed</td>
+            <td class="alignToRight">
+              <span class="material-symbols-outlined filled">
+                circle
+              </span>
+              <span class="material-symbols-outlined">
+                circle
+              </span>
+              <span class="material-symbols-outlined">
+                circle
+              </span>
+              <span class="material-symbols-outlined">
+                circle
+              </span>
+            </td>
+          </tr>
+          <tr>
+            <td>Efficiency</td>
+            <td class="alignToRight">
+              <span class="material-symbols-outlined filled">
+                circle
+              </span>
+              <span class="material-symbols-outlined">
+                circle
+              </span>
+              <span class="material-symbols-outlined">
+                circle
+              </span>
+              <span class="material-symbols-outlined">
+                circle
+              </span>
+            </td>
+          </tr>
+          <tr>
+            <td>Short arrays</td>
+            <td class="alignToRight">
+              <span class="material-symbols-outlined filled">
+                circle
+              </span>
+              <span class="material-symbols-outlined filled">
+                circle
+              </span>
+              <span class="material-symbols-outlined">
+                circle
+              </span>
+              <span class="material-symbols-outlined">
+                circle
+              </span>
+            </td>
+          </tr>
+          <tr>
+            <td>Long arrays</td>
+            <td class="alignToRight">
+              <span class="material-symbols-outlined">
+                circle
+              </span>
+              <span class="material-symbols-outlined">
+                circle
+              </span>
+              <span class="material-symbols-outlined">
+                circle
+              </span>
+              <span class="material-symbols-outlined">
+                circle
+              </span>
+            </td>
+          </tr>
+      </table>
+      <a href="https://en.wikipedia.org/wiki/Bubble_sort" target="_blank" rel="noopener noreferrer">Learn more</a>
+    </div>
+    <div class="sortDescContainer">
+      <h2>Selection sort</h2>
+      <p>Selection sort is an in-place comparison sorting algorithm. It has an O(n2) time complexity, which makes it
+        inefficient on large lists, and generally performs worse than the similar insertion sort. Selection sort is
+        noted for its simplicity and has performance advantages over more complicated algorithms in certain situations,
+        particularly where auxiliary memory is limited.</p>
+      <table>
+        <tbody>
+          <tr>
+            <td>Speed</td>
+            <td class="alignToRight">
+              <span class="material-symbols-outlined filled">
+                circle
+              </span>
+              <span class="material-symbols-outlined">
+                circle
+              </span>
+              <span class="material-symbols-outlined">
+                circle
+              </span>
+              <span class="material-symbols-outlined">
+                circle
+              </span>
+            </td>
+          </tr>
+          <tr>
+            <td>Efficiency</td>
+            <td class="alignToRight">
+              <span class="material-symbols-outlined filled">
+                circle
+              </span>
+              <span class="material-symbols-outlined">
+                circle
+              </span>
+              <span class="material-symbols-outlined">
+                circle
+              </span>
+              <span class="material-symbols-outlined">
+                circle
+              </span>
+            </td>
+          </tr>
+          <tr>
+            <td>Short arrays</td>
+            <td class="alignToRight">
+              <span class="material-symbols-outlined filled">
+                circle
+              </span>
+              <span class="material-symbols-outlined filled">
+                circle
+              </span>
+              <span class="material-symbols-outlined">
+                circle
+              </span>
+              <span class="material-symbols-outlined">
+                circle
+              </span>
+            </td>
+          </tr>
+          <tr>
+            <td>Long arrays</td>
+            <td class="alignToRight">
+              <span class="material-symbols-outlined">
+                circle
+              </span>
+              <span class="material-symbols-outlined">
+                circle
+              </span>
+              <span class="material-symbols-outlined">
+                circle
+              </span>
+              <span class="material-symbols-outlined">
+                circle
+              </span>
+            </td>
+          </tr>
+      </table>
+      <a href="https://en.wikipedia.org/wiki/Selection_sort" target="_blank" rel="noopener noreferrer">Learn more</a>
+    </div>
+    <div class="sortDescContainer">
+      <h2>Insertion sort</h2>
+      <p>Insertion sort is a simple sorting algorithm that builds the final sorted array (or list) one item at a time by
+        comparisons. It is much less efficient on large lists than more advanced algorithms such as quicksort, heapsort,
+        or merge sort. Insertion sort iterates, consuming one input element each repetition, and grows a sorted output
+        list. At each iteration, insertion sort removes one element from the input data, finds the location it belongs
+        within the sorted list, and inserts it there. It repeats until no input elements remain.</p>
+      <table>
+        <tbody>
+          <tr>
+            <td>Speed</td>
+            <td class="alignToRight">
+              <span class="material-symbols-outlined filled">
+                circle
+              </span>
+              <span class="material-symbols-outlined filled">
+                circle
+              </span>
+              <span class="material-symbols-outlined">
+                circle
+              </span>
+              <span class="material-symbols-outlined">
+                circle
+              </span>
+            </td>
+          </tr>
+          <tr>
+            <td>Efficiency</td>
+            <td class="alignToRight">
+              <span class="material-symbols-outlined filled">
+                circle
+              </span>
+              <span class="material-symbols-outlined filled">
+                circle
+              </span>
+              <span class="material-symbols-outlined">
+                circle
+              </span>
+              <span class="material-symbols-outlined">
+                circle
+              </span>
+            </td>
+          </tr>
+          <tr>
+            <td>Short arrays</td>
+            <td class="alignToRight">
+              <span class="material-symbols-outlined filled">
+                circle
+              </span>
+              <span class="material-symbols-outlined filled">
+                circle
+              </span>
+              <span class="material-symbols-outlined filled">
+                circle
+              </span>
+              <span class="material-symbols-outlined">
+                circle
+              </span>
+            </td>
+          </tr>
+          <tr>
+            <td>Long arrays</td>
+            <td class="alignToRight">
+              <span class="material-symbols-outlined filled">
+                circle
+              </span>
+              <span class="material-symbols-outlined">
+                circle
+              </span>
+              <span class="material-symbols-outlined">
+                circle
+              </span>
+              <span class="material-symbols-outlined">
+                circle
+              </span>
+            </td>
+          </tr>
+      </table>
+      <a href="https://en.wikipedia.org/wiki/Insertion_sort" target="_blank" rel="noopener noreferrer">Learn more</a>
+    </div>
+    <div class="sortDescContainer">
+      <h2>Bogo sort</h2>
+      <p>In computer science, bogosort (also known as permutation sort and stupid sort) is a sorting algorithm based on
+        the generate and test paradigm. The function successively generates permutations of its input until it finds one
+        that is sorted. It is not considered useful for sorting, but may be used for educational purposes, to contrast
+        it with more efficient algorithms.</p>
+      <table>
+        <tbody>
+          <tr>
+            <td>Speed</td>
+            <td class="alignToRight">
+              <span class="material-symbols-outlined">
+                circle
+              </span>
+              <span class="material-symbols-outlined">
+                circle
+              </span>
+              <span class="material-symbols-outlined">
+                circle
+              </span>
+              <span class="material-symbols-outlined">
+                circle
+              </span>
+            </td>
+          </tr>
+          <tr>
+            <td>Efficiency</td>
+            <td class="alignToRight">
+              <span class="material-symbols-outlined">
+                circle
+              </span>
+              <span class="material-symbols-outlined">
+                circle
+              </span>
+              <span class="material-symbols-outlined">
+                circle
+              </span>
+              <span class="material-symbols-outlined">
+                circle
+              </span>
+            </td>
+          </tr>
+          <tr>
+            <td>Short arrays</td>
+            <td class="alignToRight">
+              <span class="material-symbols-outlined">
+                circle
+              </span>
+              <span class="material-symbols-outlined">
+                circle
+              </span>
+              <span class="material-symbols-outlined">
+                circle
+              </span>
+              <span class="material-symbols-outlined">
+                circle
+              </span>
+            </td>
+          </tr>
+          <tr>
+            <td>Long arrays</td>
+            <td class="alignToRight">
+              <span class="material-symbols-outlined">
+                circle
+              </span>
+              <span class="material-symbols-outlined">
+                circle
+              </span>
+              <span class="material-symbols-outlined">
+                circle
+              </span>
+              <span class="material-symbols-outlined">
+                circle
+              </span>
+            </td>
+          </tr>
+      </table>
+      <a href="https://en.wikipedia.org/wiki/Bogosort" target="_blank" rel="noopener noreferrer">Learn more</a>
+    </div>
+  </div>
+  </div>
+  </div>
+  <nav id="navbar">
+    <div class="navbarBtn" onclick="navbarAction(0)">
+      <span class="material-symbols-outlined navbarIcon"> fast_forward </span>
+      <p class="navbarLabel navbarLabelActive">Simulate</p>
+    </div>
+    <div class="navbarBtn" onclick="navbarAction(1)">
+      <span class="material-symbols-outlined navbarIcon"> database </span>
+      <p class="navbarLabel">Results</p>
+    </div>
+    <div class="navbarBtn" onclick="navbarAction(2)">
+      <span class="material-symbols-outlined navbarIcon"> settings </span>
+      <p class="navbarLabel">Settings</p>
+    </div>
+    <div class="navbarBtn" onclick="navbarAction(3)">
+      <span class="material-symbols-outlined navbarIcon"> quick_reference </span>
+      <p class="navbarLabel">About</p>
+    </div>
+  </nav>
+  <div id="navbarFixed"></div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/dom-to-image/2.6.0/dom-to-image.min.js"></script>
+  <script src="index.js"></script>
+</body>
+
 </html>
 
 <!--
