@@ -597,6 +597,9 @@ a {
 
 .alignToRight {
     justify-content: right;
+    margin-left: auto;
+    margin-right: 0;
+    text-align: right;
 }
 
 label {
@@ -658,7 +661,7 @@ label {
     transform: translateX(25px);
 }
 
-#arrayTab, #resultsTab {
+#arrayTab, #resultsTab, #aboutTab {
     overflow: hidden;
     padding: 2vh;
 }
@@ -711,6 +714,7 @@ label {
 #downloadReportBtn {
     margin: 1.5vh 0 .5vh auto;
 }
+
 .embedContainer {
     display: flex;
     flex-direction: column;
@@ -720,6 +724,64 @@ label {
     border: solid 1px rgb(var(--palette-400));
     border-radius:  0 0 0.75vh 0.75vh;
     padding: 0 !important;
+}
+
+.sortDescContainer {
+    display: flex;
+    flex-direction: column;
+    margin: 2vh 0;
+    overflow: hidden;
+    background-color: rgb(var(--palette-50));
+    border: solid 1px rgb(var(--palette-400));
+    border-radius:  1.5vh;
+    padding: 10px !important;
+}
+
+.sortDescContainer h2 {
+    padding: 5px 0;
+    border-bottom: solid 1px rgb(var(--palette-400));
+}
+
+.sortDescContainer p {
+    margin: 10px 0 5px 0;
+}
+
+.sortDescContainer table {
+    border-radius: 10px 10px 10px 10px;
+    background-color: rgb(var(--palette-200));
+    font-family: var(--StandardTextFont);
+    color: rgb(var(--palette-950));
+    margin: 10px 0;
+    padding: 5px;
+}
+
+.sortDescContainer tr {
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid rgb(var(--palette-900));
+    margin: 5px;
+}
+
+.sortDescContainer td {
+    display: flex;
+    align-items: center;
+}
+
+.sortDescContainer td span {
+    margin: auto -1px;
+    color: rgb(var(--palette-900));
+}
+
+.filled {
+    color: rgb(var(--palette-950)) !important;
+    font-variation-settings:
+    'FILL' 1;   
+}
+
+.sortDescContainer a {
+    font-style: underline;
+    font-family: var(--StandardTextFont);
+    text-align: left;
 }
 
 .embedContainer .bar {
