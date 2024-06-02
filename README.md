@@ -25,9 +25,10 @@ This repository houses a web application designed to facilitate interactive expl
 
 ## :zap: Usage
 Upon opening the app, users are greeted with a navigation bar featuring three primary buttons:
-* **Simulator**: The main hub where users can interactively simulate various array sorting methods, enabling exploration and comprehension.
-* **Customization**: Allows users to tweak parameters of arrays and sorting algorithms, tailoring the experience to their preferences.
-* **Settings**: Offers additional options for customization such as theme selection and interface preferences, enhancing user experience.
+* **Simulate**: The main hub where users can interactively simulate various array sorting methods, enabling exploration and comprehension.
+* **Results**: Displays the result of the last sorting session full of useful statistics and the whole content of the array easily downloadable as image or copy to clipboard.
+* **Settings**: Allows users to tweak some settings such as theme color, range of values and order ascending/descending.
+* **About**: This section provides a useful and brief description of each sorting method available in the app.
 
 ###  :electric_plug: Installation
 You can get this app in many ways.
@@ -60,6 +61,11 @@ I will try to keep the repository structure as clean as possible to make mainten
 │       dev.nix
 │
 ├───Fonts
+│   ├───Material_Symbols
+│   │       MaterialSymbolsOutlined-VariableFont_FILL,GRAD,opsz,wght.ttf
+│   │       MaterialSymbolsRounded-VariableFont_FILL,GRAD,opsz,wght.ttf
+│   │       MaterialSymbolsSharp-VariableFont_FILL,GRAD,opsz,wght.ttf
+│   │
 │   ├───Noto_Sans
 │   │       NotoSans-Italic-VariableFont_wdth,wght.ttf
 │   │       NotoSans-VariableFont_wdth,wght.ttf
@@ -128,9 +134,6 @@ Configuring the simulator is straightforward. Users can adjust array parameters 
 
 * **Can I contribute to this?** <br>
 Yes, absolutely! Contributions are always well-accepted! To know more, go to the contribution section of this readme
-
-* **How are you?** <br>
-Great, thx <3
 
 ##  :camera: Gallery
 Not ready yet :D
