@@ -753,7 +753,7 @@ function makeSingleReport(sortMethod) {
   averageValDisplay.textContent = (avg / arr.length).toFixed(2);
   averageTolDisplay.textContent = calculateTolerance(averageExpDisplay.textContent, averageValDisplay.textContent).toFixed(2) + "%";
   if (slowMoState == "0") totalTime *= 1000;
-  totalTimeDisplay.textContent = `${totalTime.toFixed(3)}`; // Update totalTimeDisplay
+  totalTimeDisplay.textContent = `${totalTime.toFixed(1)}`; // Update totalTimeDisplay
   if (slowMoState == "0") totalTimeDisplay.textContent += " ms";
   else totalTimeDisplay.textContent += " sec";
   memoryAccessesDisplay.textContent = selMemAccesses;
