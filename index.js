@@ -662,6 +662,51 @@ async function insertionSort() {
     bar.classList.remove("active"));
 }
 
+async function partition(arr, low, high) {
+  let pivot = arr[high];
+  let i = low - 1;
+
+  for (let j = low; j <= high - 1; j++) {
+    // If current element is smaller tha  n the pivot 
+    if (arr[j] < pivot) {
+      selMemAccesses++;
+      // Increment index of smaller element 
+      i++;
+      selMemAccesses++
+      // Swap elements 
+      selSwaps++;
+      [arr[i], arr[j]] = [arr[j], arr[i]];
+      if (slowMoState == "1" && amountOfBars < 500) {
+        arrayContentDisplay.textContent = "";
+        // Add a delay for visualization purposes (if needed)
+        await delay(100 / amountOfBars); // Adjust the delay time as needed
+        showChanges(i, j);
+        for (let j = 0; j < arr.length; j++) {
+          let percentage = ((arr[j] - minBarValue) / (maxBarValue - minBarValue)) * 100;
+          if (percentage < 0.5) percentage = 0.5;
+          setBarWidth(j, isVerticalState, percentage);
+          arrayContentDisplay.textContent += `${arr[j]} `;
+          makeSingleReport("Quick sort", false);
+        }
+      }
+    }
+  }
+  // Swap pivot to its correct position 
+  [arr[i + 1], arr[high]] = [arr[high], arr[i + 1]];
+  selSwaps++;
+  selMemAccesses++;
+  return i + 1; // Return the partition index 
+}
+
+async function quickSort(arr, low, high) {
+  selMemAccesses++;
+  if (low >= high) return;
+  selMemAccesses++;
+  let pi = await partition(arr, low, high);
+  await quickSort(arr, low, pi - 1);
+  await quickSort(arr, pi + 1, high);
+}
+
 async function bogoSort() {
   if (!confirm("Bogo sort is a very unefficient method which may require up to thousands of years to sort an array. Do you want to continue?")) {
     makeSingleReport("Bogo sort");
@@ -735,7 +780,7 @@ function calculateTolerance(num1, num2) {
 
 const sortMethodDisplay = document.getElementById("sort_method_display");
 const totalTimeDisplay = document.getElementById("total_time");
-function makeSingleReport(sortMethod) {
+function makeSingleReport(sortMethod, printTime) {
   const numElementsDisplay = document.getElementById("num_elements");
   const rangeValuesDisplay = document.getElementById("range_values");
   const averageExpDisplay = document.getElementById("average_expected");
@@ -752,15 +797,17 @@ function makeSingleReport(sortMethod) {
   arr.forEach(val => avg += val);
   averageValDisplay.textContent = (avg / arr.length).toFixed(2);
   averageTolDisplay.textContent = calculateTolerance(averageExpDisplay.textContent, averageValDisplay.textContent).toFixed(2) + "%";
-  if (slowMoState == "0") totalTime *= 1000;
-  totalTimeDisplay.textContent = `${totalTime.toFixed(1)}`; // Update totalTimeDisplay
-  if (slowMoState == "0") totalTimeDisplay.textContent += " ms";
-  else totalTimeDisplay.textContent += " sec";
+  if (!printTime) {
+    if (slowMoState == "0") totalTime *= 1000;
+    totalTimeDisplay.textContent = `${totalTime.toFixed(1)}`; // Update totalTimeDisplay
+    if (slowMoState == "0") totalTimeDisplay.textContent += " ms";
+    else totalTimeDisplay.textContent += " sec";
+  }
   memoryAccessesDisplay.textContent = selMemAccesses;
   swapsDisplay.textContent = selSwaps;
 }
 
-function runSelected() {
+async function runSelected() {
   switch (selectedSortMethod) {
     case 0:
     case '0':
@@ -781,6 +828,38 @@ function runSelected() {
     case '3':
     case "3":
       bogoSort();
+      break;
+    case 4:
+    case '4':
+    case "4":
+      bars = document.querySelectorAll(".bar");
+      bars.forEach(bar => bar.style.transition = "none");
+      selSwaps = 0;
+      selMemAccesses = 0;
+      checkIfSortedTimes = 0;
+      time = 0
+      let sortingTime = 0;
+      const startTime = performance.now(); // Record start time in microseconds
+      await quickSort(arr, 0, arr.length - 1);
+      const endTime = performance.now(); // Record end time in microseconds
+      totalTime = (endTime - startTime) / 1000;
+      makeSingleReport("Quick sort");
+      for (let j = 0; j < arr.length; j++) {
+        let percentage = ((arr[j] - minBarValue) / (maxBarValue - minBarValue)) * 100;
+        if (percentage < 0.5) percentage = 0.5;
+        setBarWidth(j, isVerticalState, percentage);
+        arrayContentDisplay.textContent += `${arr[j]} `;
+      }
+      for (let j = 0; j < arr.length; j++) {
+        bars[j].classList.add("active");
+        await delay(500 / amountOfBars);
+      }
+      bars.forEach(bar => {
+        bar.style.transition = "0.25s all ease-in-out"
+      });
+      await delay(1000, true);
+      bars.forEach(bar =>
+        bar.classList.remove("active"));
       break;
     default:
       break;
