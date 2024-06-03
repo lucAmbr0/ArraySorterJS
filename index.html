@@ -78,6 +78,7 @@
           <option value="1">Selection Sort</option>
           <option value="2">Insertion Sort</option>
           <option value="3">Bogo Sort</option>
+          <option value="4">Quick Sort</option>
         </select>
       </button>
       <button class="buttonOutline" onclick="randomizeBars()">
@@ -208,7 +209,7 @@
         <label class="switch-label">PWA Name</label>
         <label class="alignToRight">Array Sorter</label>
         <label class="switch-label">App version</label>
-        <label class="alignToRight" id="latestVersionDisplay">1.23.70</label>
+        <label class="alignToRight" id="latestVersionDisplay">1.25.74</label>
         <label class="switch-label">License</label>
         <label class="alignToRight">
           <a href="https://github.com/lucAmbr0/ArraySorterJS/blob/master/LICENSE">MIT License</a></label>
@@ -450,7 +451,7 @@
               <span class="material-symbols-outlined filled">
                 circle
               </span>
-              <span class="material-symbols-outlined">
+              <span class="material-symbols-outlined filled">
                 circle
               </span>
             </td>
@@ -556,6 +557,90 @@
           </tr>
       </table>
       <button class="buttonOutline"><a href="https://en.wikipedia.org/wiki/Bogosort" target="_blank"
+          rel="noopener noreferrer"><span class="material-symbols-outlined">
+            open_in_new
+          </span>Learn more</a></button>
+    </div>
+    <div class="sortDescContainer">
+      <h2>Quick sort</h2>
+      <p>Quicksort is an efficient, general-purpose sorting algorithm. Overall, it is slightly faster than merge sort
+        and heapsort for randomized data, particularly on larger distributions. Quicksort is a divide-and-conquer
+        algorithm. It works by selecting a 'pivot' element from the array and partitioning the other elements into two
+        sub-arrays, according to whether they are less than or greater than the pivot. For this reason, it is sometimes
+        called partition-exchange sort. The sub-arrays are then sorted recursively. This can be done in-place, requiring
+        small additional amounts of memory to perform the sorting.</p>
+      <table>
+        <tbody>
+          <tr>
+            <td>Speed</td>
+            <td class="alignToRight">
+              <span class="material-symbols-outlined filled">
+                circle
+              </span>
+              <span class="material-symbols-outlined filled">
+                circle
+              </span>
+              <span class="material-symbols-outlined filled">
+                circle
+              </span>
+              <span class="material-symbols-outlined filled">
+                circle
+              </span>
+            </td>
+          </tr>
+          <tr>
+            <td>Efficiency</td>
+            <td class="alignToRight">
+              <span class="material-symbols-outlined filled">
+                circle
+              </span>
+              <span class="material-symbols-outlined filled">
+                circle
+              </span>
+              <span class="material-symbols-outlined filled">
+                circle
+              </span>
+              <span class="material-symbols-outlined filled">
+                circle
+              </span>
+            </td>
+          </tr>
+          <tr>
+            <td>Short arrays</td>
+            <td class="alignToRight">
+              <span class="material-symbols-outlined filled">
+                circle
+              </span>
+              <span class="material-symbols-outlined filled">
+                circle
+              </span>
+              <span class="material-symbols-outlined">
+                circle
+              </span>
+              <span class="material-symbols-outlined">
+                circle
+              </span>
+            </td>
+          </tr>
+          <tr>
+            <td>Long arrays</td>
+            <td class="alignToRight">
+              <span class="material-symbols-outlined filled">
+                circle
+              </span>
+              <span class="material-symbols-outlined filled">
+                circle
+              </span>
+              <span class="material-symbols-outlined filled">
+                circle
+              </span>
+              <span class="material-symbols-outlined filled">
+                circle
+              </span>
+            </td>
+          </tr>
+      </table>
+      <button class="buttonOutline"><a href="https://en.wikipedia.org/wiki/Quicksort" target="_blank"
           rel="noopener noreferrer"><span class="material-symbols-outlined">
             open_in_new
           </span>Learn more</a></button>
